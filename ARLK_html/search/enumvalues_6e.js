@@ -1,0 +1,21 @@
+var searchData=
+[
+  ['nu_5fsvc',['NU_SVC',['../svm_8h.html#a99fb83031ce9923c84392b4e92f956b5aca90881af01036a7221b791eb08d03fc',1,'svm.h']]],
+  ['nu_5fsvr',['NU_SVR',['../svm_8h.html#a99fb83031ce9923c84392b4e92f956b5a9e113c85baa91dc44fe128028e384309',1,'svm.h']]],
+  ['nui_5fskeleton_5fposition_5fankle_5fleft',['NUI_SKELETON_POSITION_ANKLE_LEFT',['../configure_8h.html#a6d9eb5f14928aa2beb645fc7b3707fe2a195a367bb0a35e35e97793299ab96c7f',1,'configure.h']]],
+  ['nui_5fskeleton_5fposition_5fankle_5fright',['NUI_SKELETON_POSITION_ANKLE_RIGHT',['../configure_8h.html#a6d9eb5f14928aa2beb645fc7b3707fe2a41dd42b2fe9d1bd6ded20ff3a4df7edc',1,'configure.h']]],
+  ['nui_5fskeleton_5fposition_5fcount',['NUI_SKELETON_POSITION_COUNT',['../configure_8h.html#a6d9eb5f14928aa2beb645fc7b3707fe2a845b32a01fa1d7ebe58086ce249b25be',1,'configure.h']]],
+  ['nui_5fskeleton_5fposition_5felbow_5fleft',['NUI_SKELETON_POSITION_ELBOW_LEFT',['../configure_8h.html#a6d9eb5f14928aa2beb645fc7b3707fe2a17832f38c2958c512790c5c3d36687ae',1,'configure.h']]],
+  ['nui_5fskeleton_5fposition_5felbow_5fright',['NUI_SKELETON_POSITION_ELBOW_RIGHT',['../configure_8h.html#a6d9eb5f14928aa2beb645fc7b3707fe2a655ceee3640f036fec5b0efbb73dcda3',1,'configure.h']]],
+  ['nui_5fskeleton_5fposition_5fhead',['NUI_SKELETON_POSITION_HEAD',['../configure_8h.html#a6d9eb5f14928aa2beb645fc7b3707fe2a913cbe4aa78fa5fdddf7ef4958d7c035',1,'configure.h']]],
+  ['nui_5fskeleton_5fposition_5fhip_5fleft',['NUI_SKELETON_POSITION_HIP_LEFT',['../configure_8h.html#a6d9eb5f14928aa2beb645fc7b3707fe2a8767abe584a55b3d8b1ee9ff89170ac9',1,'configure.h']]],
+  ['nui_5fskeleton_5fposition_5fhip_5fright',['NUI_SKELETON_POSITION_HIP_RIGHT',['../configure_8h.html#a6d9eb5f14928aa2beb645fc7b3707fe2a4bfb9e067e73ee90556cc9d8c3815f9f',1,'configure.h']]],
+  ['nui_5fskeleton_5fposition_5fknee_5fleft',['NUI_SKELETON_POSITION_KNEE_LEFT',['../configure_8h.html#a6d9eb5f14928aa2beb645fc7b3707fe2acc10a9b6a937a0a6b2502dfd6fd161bd',1,'configure.h']]],
+  ['nui_5fskeleton_5fposition_5fknee_5fright',['NUI_SKELETON_POSITION_KNEE_RIGHT',['../configure_8h.html#a6d9eb5f14928aa2beb645fc7b3707fe2aa8cdf6e9da7e8c37230e0846e9735fa6',1,'configure.h']]],
+  ['nui_5fskeleton_5fposition_5fshoulder_5fcenter',['NUI_SKELETON_POSITION_SHOULDER_CENTER',['../configure_8h.html#a6d9eb5f14928aa2beb645fc7b3707fe2a3f435253c33d259562c7a8da59af3ae8',1,'configure.h']]],
+  ['nui_5fskeleton_5fposition_5fshoulder_5fleft',['NUI_SKELETON_POSITION_SHOULDER_LEFT',['../configure_8h.html#a6d9eb5f14928aa2beb645fc7b3707fe2ab43f43e64044268f8d4b718f66caeaaf',1,'configure.h']]],
+  ['nui_5fskeleton_5fposition_5fshoulder_5fright',['NUI_SKELETON_POSITION_SHOULDER_RIGHT',['../configure_8h.html#a6d9eb5f14928aa2beb645fc7b3707fe2ad1ada54b05766179351b8c0405dba7f3',1,'configure.h']]],
+  ['nui_5fskeleton_5fposition_5fspine',['NUI_SKELETON_POSITION_SPINE',['../configure_8h.html#a6d9eb5f14928aa2beb645fc7b3707fe2a6a411fb03face3c6ae09a1cf2b3c4172',1,'configure.h']]],
+  ['nui_5fskeleton_5fposition_5fwrist_5fleft',['NUI_SKELETON_POSITION_WRIST_LEFT',['../configure_8h.html#a6d9eb5f14928aa2beb645fc7b3707fe2a7f7b68b559a524acfff171c473393723',1,'configure.h']]],
+  ['nui_5fskeleton_5fposition_5fwrist_5fright',['NUI_SKELETON_POSITION_WRIST_RIGHT',['../configure_8h.html#a6d9eb5f14928aa2beb645fc7b3707fe2a3a54f79660b9786eeef8125d155a706c',1,'configure.h']]]
+];
