@@ -1,0 +1,534 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Eaglesky&#39;s Blog">
+    <title>Migrate Disqus Comments to a New URL Using URL Mapper - Eaglesky&#39;s Blog</title>
+    <meta name="author" content="Yalun Qin">
+    
+    
+        <link rel="icon" href="https://farm6.staticflickr.com/5796/24064690136_786618ac9c_m.jpg">
+    
+    
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+    
+    <meta name="description" content="When migrating to a new blogging system, one important is to migrate the comments in the posts. If you use Disqus as the comment system, you can use one of the three migration tools they provide to do">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="Migrate Disqus Comments to a New URL Using URL Mapper">
+<meta property="og:url" content="http://eaglesky.github.io/2016/01/02/MigrateDisqus/index.html">
+<meta property="og:site_name" content="Eaglesky's Blog">
+<meta property="og:description" content="When migrating to a new blogging system, one important is to migrate the comments in the posts. If you use Disqus as the comment system, you can use one of the three migration tools they provide to do">
+<meta property="og:updated_time" content="2016-05-21T22:12:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Migrate Disqus Comments to a New URL Using URL Mapper">
+<meta name="twitter:description" content="When migrating to a new blogging system, one important is to migrate the comments in the posts. If you use Disqus as the comment system, you can use one of the three migration tools they provide to do">
+    
+    
+        
+    
+    
+        <meta property="og:image" content="http://www.gravatar.com/avatar/7e85ef7ac7d7263b525e55e4408151a4?s=640"/>
+    
+    
+    
+    
+    <!--STYLES-->
+    <link rel="stylesheet" href="/assets/css/font-awesome.css" type="text/css">
+    <link rel="stylesheet" href="/assets/css/jquery.fancybox.css" type="text/css">
+    <link rel="stylesheet" href="/assets/css/jquery.fancybox-thumbs.css" type="text/css">
+    <link rel="stylesheet" href="/assets/css/tranquilpeak.css" type="text/css">
+    <!--STYLES END-->
+    
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-49504412-1']);
+        _gaq.push(['_trackPageview']);
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+        
+    
+
+<header id="header" data-behavior="1">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <h1 class="header-title">
+        <a class="header-title-link" href="/ ">Eaglesky&#39;s Blog</a>
+    </h1>
+    
+        
+            <a  class="header-right-picture "
+                href="/#about">
+        
+        
+            <img class="header-picture" src="http://www.gravatar.com/avatar/7e85ef7ac7d7263b525e55e4408151a4?s=90"/>
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+    
+
+<nav id="sidebar" data-behavior="1">
+    
+        <div class="sidebar-profile">
+            <a href="/#about">
+                    <img class="sidebar-profile-picture" src="http://www.gravatar.com/avatar/7e85ef7ac7d7263b525e55e4408151a4?s=110"/>
+            </a>
+            <span class="sidebar-profile-name">Yalun Qin</span>
+        </div>
+    
+    
+        <ul class="sidebar-buttons">
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/ "
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+                    <span class="sidebar-button-desc">Home</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/#about"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+                    <span class="sidebar-button-desc">About</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/projects"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-picture-o"></i>
+                    <span class="sidebar-button-desc">Projects</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/all-archives"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+                    <span class="sidebar-button-desc">Archives</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/all-categories"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+                    <span class="sidebar-button-desc">Categories</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/all-tags"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+                    <span class="sidebar-button-desc">Tags</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link st-search-show-outputs"
+                         href="/#search"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-search"></i>
+                    <span class="sidebar-button-desc">Search</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+        <ul class="sidebar-buttons">
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link " href="https://github.com/eaglesky" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+                    <span class="sidebar-button-desc">GitHub</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link " href="https://www.linkedin.com/in/yalunqin" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-linkedin"></i>
+                    <span class="sidebar-button-desc">LinkedIn</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/atom.xml"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+                    <span class="sidebar-button-desc">RSS</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+</nav>
+
+            
+            <div id="main" data-behavior="1"
+                 class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post" itemscope itemType="http://schema.org/BlogPosting">
+    
+    
+        <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title" itemprop="headline">
+            Migrate Disqus Comments to a New URL Using URL Mapper
+        </h1>
+    
+    <div class="post-meta">
+    <time itemprop="datePublished" content="Sat Jan 02 2016 19:13:20 GMT-0800">
+	
+		    Jan 02, 2016
+    	
+    </time>
+    
+        <span>in </span>
+        
+    <a class="category-link" href="/categories/Blog-Building/">Blog Building</a>
+
+
+    
+</div>
+</div>
+    
+    <div class="post-content markdown" itemprop="articleBody">
+        <div class="main-content-wrap">
+            <p>When migrating to a new blogging system, one important is to migrate the comments in the posts. If you use Disqus as the comment system, you can use one of the three migration tools they provide to do the job. You can find the three tools through Admin -&gt; Setup -&gt; Migration tools.<br><a id="more"></a></p>
+<blockquote><p><strong>Domain Migration Wizard</strong> - If the base domain of your website has recently changed, you’ll need to migrate the URLs of your commenting threads to use the new base domain (ex: www.old-url.com -&gt; new-awesome-url.com).<br><strong>URL Mapper</strong> - If the URL slug of your site’s posts has recently changed, you’ll need to use our URL Mapper to migrate your commenting threads from the old URL to the new one (ex: yourdomain.com/p=23 -&gt; yourdomain.com/new-page-slug).<br><strong>Redirect Crawler</strong> - If you’ve already setup 301 redirects for your site’s pages, then use our Redirect Crawler to crawl your site’s pages and migrate the URLs of your commenting threads automatically. Recommended for advanced users only.</p>
+</blockquote>
+<p>For our case ususaly URL Mapper is the best choice. Before using any of the three tools, be sure to check the considerations and limitations on the Disqus website first(especially the second one):<br><blockquote><ul>
+<li>If merging two threads together, this cannot be undone</li>
+<li>The migration tools will not migrate comments to a new Disqus shortname, so be sure to use the same shortname on the new site.</li>
+<li>Migrations can take up to 24 hours to finish, and we suggest checking its progress occasionally during that time (by looking for the updated comment threads on a page where they did not previously exist).</li>
+<li>If you’re using a custom disqus_identifier this will still play a role. If two threads are merged into the same URL and have different identifiers as well, the new thread will contain both identifiers</li>
+</ul>
+</blockquote></p>
+<p>To use the URL Mapper, all you need to do is to upload a csv file which stores all the mapping from the old URLs to the new ones. In Disqus each old thread(comments associated with a post) is identified by an URL. The new URL is the place where you want to move the old thread to. Note that the URL is not necessarily the URL of your post. It is the one specified in the Disqus javascript embedded in the post page:  </p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> disqus_config = <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.page.url = <span class="string">'a unique URL for each page where Disqus is present'</span>;</span><br><span class="line">    <span class="comment">// this.page.identifier = 'a unique identifier for each page where Disqus is present';</span></span><br><span class="line">    <span class="keyword">this</span>.page.title = <span class="string">'a unique title for each page where Disqus is present'</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>You will find this code in the post page if Disqus is enable on that. The URL of the post is specified by <code>this.page.url</code>.</p>
+<p>In order for the mapping to work, you also need to comment out the Disqus identifier. If it is specified in the new page, the identifier(or maybe along with the url?) will be used to search for the thread in the map. Unless the identifier is the same as the old one, the old thread will not show up in the new page. </p>
+<h3 id="Other-notes"><a href="#Other-notes" class="headerlink" title="Other notes"></a>Other notes</h3><ol>
+<li><p>New URL map entries will not override the previous ones unless the same key(old URL) exists in the original map. When you upload a new map, it is always the “append” operation that gets executed. </p>
+</li>
+<li><p>I failed to migrate the thread in <a href="http://eaglesky.github.io/blog/2014/03/25/my-first-blog-post/">http://eaglesky.github.io/blog/2014/03/25/my-first-blog-post/</a> to <a href="http://eaglesky.github.io/projects/index.html">http://eaglesky.github.io/projects/index.html</a> using the above approach. However from my other Disqus comments shown at the bottom of this page you can see the mapping is actually working correctly. I still couldn’t understand why it is not showing up in the new page. </p>
+</li>
+<li><p>Usually if you do things correctly you can see the thread showing up in the new page as expected very soon after you deploy your website. But it could take hours for the link at the bottom of the page to work. </p>
+</li>
+<li><p>Maybe we can just use the same Disqus identifier to do the migration? </p>
+</li>
+</ol>
+
+            
+                
+
+            
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">TAGGED IN</span><br/>
+                
+    <a class="tag tag--primary tag--small t-link" href="/tags/Disqus/">Disqus</a>
+
+            </div>
+        
+        <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/05/21/MySqlRootProblem/"  data-tooltip="Logged in as anonymous user after &quot;mysql -uroot -p&quot;">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/12/26/HandGestureRecognition/" data-tooltip="Color-Based Hand Gesture Recognition on Android">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions"  href="#btn-open-shareoptions">
+                <i class="fa fa-share-alt"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://eaglesky.github.io/2016/01/02/MigrateDisqus/">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://eaglesky.github.io/2016/01/02/MigrateDisqus/">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://eaglesky.github.io/2016/01/02/MigrateDisqus/">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
+        
+            <li class="post-action">
+                <a class="post-action-btn btn btn--default" href="#disqus_thread">
+                    <i class="fa fa-comment-o"></i>
+                </a>
+            </li>
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#">
+            
+                <i class="fa fa-arrow-up"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+            
+                <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+            
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2016 Yalun Qin. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="1">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/05/21/MySqlRootProblem/"  data-tooltip="Logged in as anonymous user after &quot;mysql -uroot -p&quot;">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/12/26/HandGestureRecognition/" data-tooltip="Color-Based Hand Gesture Recognition on Android">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions"  href="#btn-open-shareoptions">
+                <i class="fa fa-share-alt"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://eaglesky.github.io/2016/01/02/MigrateDisqus/">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://eaglesky.github.io/2016/01/02/MigrateDisqus/">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://eaglesky.github.io/2016/01/02/MigrateDisqus/">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
+        
+            <li class="post-action">
+                <a class="post-action-btn btn btn--default" href="#disqus_thread">
+                    <i class="fa fa-comment-o"></i>
+                </a>
+            </li>
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#">
+            
+                <i class="fa fa-arrow-up"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                <div id="share-options-bar" class="share-options-bar" data-behavior="1">
+    <ul class="share-options">
+        <li class="share-option">
+            <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://eaglesky.github.io/2016/01/02/MigrateDisqus/">
+                <i class="fa fa-google-plus"></i><span class="">Share on Google Plus</span>
+            </a>
+        </li>
+        <li class="share-option">
+            <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://eaglesky.github.io/2016/01/02/MigrateDisqus/">
+                <i class="fa fa-facebook-official"></i><span>Share on Facebook</span>
+            </a>
+        </li>
+        <li class="share-option">
+            <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://eaglesky.github.io/2016/01/02/MigrateDisqus/">
+                <i class="fa fa-twitter"></i><span>Share on Twitter</span>
+            </a>
+        </li>
+    </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+            
+        </div>
+        
+
+
+    
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-remove"></i>
+        </div>
+        
+            <img id="about-card-picture" src="http://www.gravatar.com/avatar/7e85ef7ac7d7263b525e55e4408151a4?s=110"/>
+        
+            <h4 id="about-card-name">Yalun Qin</h4>
+        
+            <h5 id="about-card-bio"><p>Hey I’m Yalun!<br> allenchin1990@gmail.com</p>
+</h5>
+        
+        
+            <h5 id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                <p>Software Engineer</p>
+
+            </h5>
+        
+        
+            <h5 id="about-card-location">
+                <i class="fa fa-map-marker"></i>
+                <br/>
+                San Francisco Bay Area
+            </h5>
+        
+    </div>
+</div>
+
+        
+<div id="cover" style="background-image:url('https://farm2.staticflickr.com/1569/24064703426_c1fa9c3ee6_h.jpg');"></div>
+    </body>
+    <!--SCRIPTS-->
+<script src="/assets/js/jquery.js" type="text/javascript"></script>
+<script src="/assets/js/jquery.fancybox.js" type="text/javascript"></script>
+<script src="/assets/js/jquery.fancybox-thumbs.js" type="text/javascript"></script>
+<script src="/assets/js/tranquilpeak.js" type="text/javascript"></script>
+<!--SCRIPTS END-->
+
+    
+        <script>
+             var disqus_config = function () {
+                 this.page.url = 'http://eaglesky.github.io/2016/01/02/MigrateDisqus/';
+             };
+            (function() {
+                var d = document, s = d.createElement('script');
+                var disqus_shortname = 'eaglesky';
+                s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+
+
+    <script type="text/javascript">
+        (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+                (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+            e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+        })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+        _st('install','FdJaNFHgUJY_8fxMdWNj','2.0.0');
+    </script>
+
+
+</html>

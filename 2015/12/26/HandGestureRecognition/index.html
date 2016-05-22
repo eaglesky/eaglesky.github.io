@@ -1,0 +1,576 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Eaglesky&#39;s Blog">
+    <title>Color-Based Hand Gesture Recognition on Android - Eaglesky&#39;s Blog</title>
+    <meta name="author" content="Yalun Qin">
+    
+    
+        <link rel="icon" href="https://farm6.staticflickr.com/5796/24064690136_786618ac9c_m.jpg">
+    
+    
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+    
+    <meta name="description" content="This is my course project for CS290I(Mobile Imaging) in UCSB. The goal is to detect and recognize user-defined gestures using the camera of Android phone. A demo Android app that lets the user launch">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="Color-Based Hand Gesture Recognition on Android">
+<meta property="og:url" content="http://eaglesky.github.io/2015/12/26/HandGestureRecognition/index.html">
+<meta property="og:site_name" content="Eaglesky's Blog">
+<meta property="og:description" content="This is my course project for CS290I(Mobile Imaging) in UCSB. The goal is to detect and recognize user-defined gestures using the camera of Android phone. A demo Android app that lets the user launch">
+<meta property="og:image" content="http://eaglesky.github.io/images/posts/hand-gesture/workflow.jpg">
+<meta property="og:image" content="http://eaglesky.github.io/images/posts/hand-gesture/presampled-back.jpg">
+<meta property="og:image" content="http://eaglesky.github.io/images/posts/hand-gesture/presampled-hand.jpg">
+<meta property="og:image" content="http://eaglesky.github.io/images/posts/hand-gesture/thresholding-back.jpg">
+<meta property="og:image" content="http://eaglesky.github.io/images/posts/hand-gesture/features.jpg">
+<meta property="og:image" content="http://eaglesky.github.io/images/posts/hand-gesture/defects-elimination.jpg">
+<meta property="og:image" content="http://eaglesky.github.io/images/posts/hand-gesture/training-set.jpg">
+<meta property="og:image" content="http://eaglesky.github.io/images/posts/hand-gesture/s1.jpg">
+<meta property="og:image" content="http://eaglesky.github.io/images/posts/hand-gesture/s2.jpg">
+<meta property="og:image" content="http://eaglesky.github.io/images/posts/hand-gesture/s3.jpg">
+<meta property="og:updated_time" content="2016-05-21T22:12:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Color-Based Hand Gesture Recognition on Android">
+<meta name="twitter:description" content="This is my course project for CS290I(Mobile Imaging) in UCSB. The goal is to detect and recognize user-defined gestures using the camera of Android phone. A demo Android app that lets the user launch">
+    
+    
+        
+    
+    
+        <meta property="og:image" content="http://www.gravatar.com/avatar/7e85ef7ac7d7263b525e55e4408151a4?s=640"/>
+    
+    
+    
+    
+    <!--STYLES-->
+    <link rel="stylesheet" href="/assets/css/font-awesome.css" type="text/css">
+    <link rel="stylesheet" href="/assets/css/jquery.fancybox.css" type="text/css">
+    <link rel="stylesheet" href="/assets/css/jquery.fancybox-thumbs.css" type="text/css">
+    <link rel="stylesheet" href="/assets/css/tranquilpeak.css" type="text/css">
+    <!--STYLES END-->
+    
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-49504412-1']);
+        _gaq.push(['_trackPageview']);
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+        
+    
+
+<header id="header" data-behavior="1">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <h1 class="header-title">
+        <a class="header-title-link" href="/ ">Eaglesky&#39;s Blog</a>
+    </h1>
+    
+        
+            <a  class="header-right-picture "
+                href="/#about">
+        
+        
+            <img class="header-picture" src="http://www.gravatar.com/avatar/7e85ef7ac7d7263b525e55e4408151a4?s=90"/>
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+    
+
+<nav id="sidebar" data-behavior="1">
+    
+        <div class="sidebar-profile">
+            <a href="/#about">
+                    <img class="sidebar-profile-picture" src="http://www.gravatar.com/avatar/7e85ef7ac7d7263b525e55e4408151a4?s=110"/>
+            </a>
+            <span class="sidebar-profile-name">Yalun Qin</span>
+        </div>
+    
+    
+        <ul class="sidebar-buttons">
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/ "
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+                    <span class="sidebar-button-desc">Home</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/#about"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+                    <span class="sidebar-button-desc">About</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/projects"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-picture-o"></i>
+                    <span class="sidebar-button-desc">Projects</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/all-archives"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+                    <span class="sidebar-button-desc">Archives</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/all-categories"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+                    <span class="sidebar-button-desc">Categories</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/all-tags"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+                    <span class="sidebar-button-desc">Tags</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link st-search-show-outputs"
+                         href="/#search"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-search"></i>
+                    <span class="sidebar-button-desc">Search</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+        <ul class="sidebar-buttons">
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link " href="https://github.com/eaglesky" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+                    <span class="sidebar-button-desc">GitHub</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link " href="https://www.linkedin.com/in/yalunqin" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-linkedin"></i>
+                    <span class="sidebar-button-desc">LinkedIn</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/atom.xml"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+                    <span class="sidebar-button-desc">RSS</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+</nav>
+
+            
+            <div id="main" data-behavior="1"
+                 class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post" itemscope itemType="http://schema.org/BlogPosting">
+    
+    
+        <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title" itemprop="headline">
+            Color-Based Hand Gesture Recognition on Android
+        </h1>
+    
+    <div class="post-meta">
+    <time itemprop="datePublished" content="Sat Dec 26 2015 23:45:42 GMT-0800">
+	
+		    Dec 26, 2015
+    	
+    </time>
+    
+        <span>in </span>
+        
+    <a class="category-link" href="/categories/Computer-Vision/">Computer Vision</a>
+
+
+    
+</div>
+</div>
+    
+    <div class="post-content markdown" itemprop="articleBody">
+        <div class="main-content-wrap">
+            <p>This is my course project for CS290I(Mobile Imaging) in UCSB. The goal is to detect and recognize user-defined gestures using the camera of Android phone. A demo Android app that lets the user launch other applications using gestures is developed to show the real time performance.<br><a id="more"></a></p>
+<h1 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h1><div class="figure center"><a class="fancybox" href="/images/posts/hand-gesture/workflow.jpg" title="Architecture for Hand Gesture Recognition on Android"><img class="fig-img" src="/images/posts/hand-gesture/workflow.jpg" style="width:500;height:310;" alt="Architecture for Hand Gesture Recognition on Android"></a><span class="caption">Architecture for Hand Gesture Recognition on Android</span></div>
+<h1 id="Presampling-and-Hand-Segmentation"><a href="#Presampling-and-Hand-Segmentation" class="headerlink" title="Presampling and Hand Segmentation"></a>Presampling and Hand Segmentation</h1><div class="figure left" style="width:380;"><a class="fancybox" href="/images/posts/hand-gesture/presampled-back.jpg" title=""><img class="fig-img" src="/images/posts/hand-gesture/presampled-back.jpg" style="width:380;" alt=""></a></div><div style="clear:both;"></div> 
+<div class="figure left" style="width:380;"><a class="fancybox" href="/images/posts/hand-gesture/presampled-hand.jpg" title=""><img class="fig-img" src="/images/posts/hand-gesture/presampled-hand.jpg" style="width:380;" alt=""></a></div><div style="clear:both;"></div>
+<p>The app starts with two pre-sampling steps, which collect colors of background and the user’s hand using 7 small squares displayed on the screen. These color data are used to compute the thresholds to get the binary image from the input RGBA data. For simplicity, adaptive method was not used to find the best threshold. Instead, the user is asked to put his hand close to the screen to cover the 7 squares so that the  program can get the color data of the hand. Note that the number of squares is just an empirical value and it can be other values. After the 7 color data for the hand are obtained ,7 upper and lower boundaries for the hand area are computed, which can be represented as a 6 dimensional vector. The bounding vector is determined by the developer and could not be changed. Therefore, the performance of the segmentation actually depends on the choice of the bounding vector. To better understand the influence of each element of the vector on the segmentation performance, the original RGB color space is converted to many other color spaces like HSV, YCrCb, CIE L*a*b*. Since for the same hand, the color usually varies most on the lighting dimension and smaller on hue and other color dimensions, the desirable color space should be able to separate them. After some experiments the three color spaces listed are all found to perform quite well, but it is easier to find the best bounding vector by using LAB space. Therefore the LAB color space is used.</p>
+<div class="figure center"><a class="fancybox" href="/images/posts/hand-gesture/thresholding-back.jpg" title=""><img class="fig-img" src="/images/posts/hand-gesture/thresholding-back.jpg" style="width:500;" alt=""></a></div><div style="clear:both;"></div>
+<p>After the boundaries for each of the 7 color data are obtained, 7 binary images of the hand can be computed, which are then summed up using logical operation “or”. The same thing are done on the background color, producing another binary image. The logical operation “and” is then done on the two binary images and the result is blurred, dilated and eroded to eliminate noises, and the final binary image is obtained, as is shown in the above picture.</p>
+<h1 id="Feature-Extraction"><a href="#Feature-Extraction" class="headerlink" title="Feature Extraction"></a>Feature Extraction</h1><div class="figure center"><a class="fancybox" href="/images/posts/hand-gesture/features.jpg" title="Illustration of the elements needed to calculate features. The green box represents the bounding box of the hand. The blue line represents the convex hull. The red line is the contour of the hand. The green dots between the fingers are defect points. The yellow circle is the inscribed circle and the black dot is the center of the circle, which is treated as the center of the palm. The dark green lines are finger vectors, and the order is indicted by the numbers"><img class="fig-img" src="/images/posts/hand-gesture/features.jpg" style="width:40%;" alt="Illustration of the elements needed to calculate features. The green box represents the bounding box of the hand. The blue line represents the convex hull. The red line is the contour of the hand. The green dots between the fingers are defect points. The yellow circle is the inscribed circle and the black dot is the center of the circle, which is treated as the center of the palm. The dark green lines are finger vectors, and the order is indicted by the numbers"></a><span class="caption">Illustration of the elements needed to calculate features. The green box represents the bounding box of the hand. The blue line represents the convex hull. The red line is the contour of the hand. The green dots between the fingers are defect points. The yellow circle is the inscribed circle and the black dot is the center of the circle, which is treated as the center of the palm. The dark green lines are finger vectors, and the order is indicted by the numbers</span></div><div style="clear:both;"></div>
+<p>The features used to represent the hand are low-level features, which essentially are the finger vectors. To compute them, it is necessary to find out the locations of the palm center and the fingertips. Some of the OpenCV functions can directly return the contour and convex hull points of the hand from a binary image containing the segmented hand. Using these coordinates and the bounding box, the center and radius of the inscribed circle of the contour can be computed. This part is quite computationally expensive and is implemented in native C++ code. </p>
+<div class="figure center"><a class="fancybox" href="/images/posts/hand-gesture/defects-elimination.jpg" title=""><img class="fig-img" src="/images/posts/hand-gesture/defects-elimination.jpg" style="width:400;" alt=""></a></div><div style="clear:both;"></div>
+<p>The locations of the fingertips are computed using the defect points. To do so, the redundant defect points are eliminated by checking constraints on the depth and angle of the defect points and so on, as is shown in the above picture. Next the defect points left are reordered and the finger tips are obtained from the returned coordinates of OpenCV functions. Finally the finger vectors are computed and divided by the radius of inscribe circle to get the final feature vector: $$X = [x_0 / r, y_0 / r, x_1 / r, y_1/r … x_4/r, y_4/r] $$.</p>
+<h1 id="Training-Set"><a href="#Training-Set" class="headerlink" title="Training Set"></a>Training Set</h1><div class="figure center"><a class="fancybox" href="/images/posts/hand-gesture/training-set.jpg" title=""><img class="fig-img" src="/images/posts/hand-gesture/training-set.jpg" style="width:500;" alt=""></a></div><div style="clear:both;"></div>
+<p>Currently 19 gestures have been collected to constitute the initial data set, as is shown in above figure. Note that although the extracted feature vector is invariant to different size of hand, it is variant to different orientations since gestures of different orientations are treated as different gestures. Also it can be seen from above figure that the “gesture” labeled as 0 is actually not a gesture. The label 0 is reserved to represent anything whose features are not detected. It can be counted as representing a negative example. It also reveals one of the limitations that the “fist” gesture can not be recognized. </p>
+<p>The user can add whatever gestures they like to the initial data set or build another one using the application. The training process can be conducted in any conditions as long as the hand can be well detected. Due to time constraint, very few number of frames are collected for each gesture(Only 10 frames). Multi-class SVM is used to build the training model and make predictions.</p>
+<h1 id="Results-and-Analysis"><a href="#Results-and-Analysis" class="headerlink" title="Results and Analysis"></a>Results and Analysis</h1><p>To show the results, several tests were conducted in different lighting conditions and different backgrounds. For each gesture, 3 frames were captured together with the predicted labels shown as the red numbers in the photos. Three frames are far less than enough to prove the accuracy. However according to observation, the final recognition result highly depends on the detection result. In other words, if the hand is well-detected, which means the extracted feature vector correctly represents the hand gesture, then the hand can be classified into the right category with high probability. Therefore what really matters is actually the performance of hand detection rather than that of hand recognition. The performance of hand detection can be seen from the pictures captured, which display elements like the contour and finger vectors. Three frames are enough to see if these elements are correct and if they are stable or not.</p>
+<div class="figure center"><a class="fancybox" href="/images/posts/hand-gesture/s1.jpg" title="Results in Scenario 1"><img class="fig-img" src="/images/posts/hand-gesture/s1.jpg" style="width:600;height:691;" alt="Results in Scenario 1"></a><span class="caption">Results in Scenario 1</span></div><div style="clear:both;"></div>
+<div class="figure center"><a class="fancybox" href="/images/posts/hand-gesture/s2.jpg" title="Results in Scenario 2"><img class="fig-img" src="/images/posts/hand-gesture/s2.jpg" style="width:600;height:691;" alt="Results in Scenario 2"></a><span class="caption">Results in Scenario 2</span></div><div style="clear:both;"></div>
+<div class="figure center"><a class="fancybox" href="/images/posts/hand-gesture/s3.jpg" title="Results in Scenario 3"><img class="fig-img" src="/images/posts/hand-gesture/s3.jpg" style="width:600;height:691;" alt="Results in Scenario 3"></a><span class="caption">Results in Scenario 3</span></div><div style="clear:both;"></div>
+<p>The app was tested in three scenarios and the results are shown in above figures. It can be seen that the app worked quite well in Scenario 1 and Scenario 3: all the predicted labels are correct and most of the gestures are detected correctly and quite stable, except that there is one gesture not detected(Random error). And the main reason for the success is that there are sharp contrast in color between the background and the hand. Whether the background is cluttered or not does not matter, only the color matters.</p>
+<p>In Scenario 2 some of the gestures are not well-detected. The main cause for this is that the yellow color in the background kind of interfere the extraction of contour of the hand. Also the auto adjustment of the camera becomes stronger in this scenario which is probably because of the light.</p>
+<p>In summary, with the help of presampled colors, the app can detect and recognize the hand quite well and stable in most of the lighting conditions and backgrounds, as long as the contrast of the background and the hand is not too poor. However the constraint is that they must keep the same once the presample processes finish. And that means both of the hand and the phone should not move too much, in order to avoid the change of the colors.</p>
+<h1 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h1><div class="video-container"><iframe src="//www.youtube.com/embed/PF6hY-0VuN4" frameborder="0" allowfullscreen></iframe></div>
+<h1 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h1><h2 id="Potential-Improvements"><a href="#Potential-Improvements" class="headerlink" title="Potential Improvements"></a>Potential Improvements</h2><ol>
+<li>Build statistical model for the color of background and hand instead of simple sampling and summing.</li>
+<li>Use adaptive thresholding to get the final binary image.</li>
+<li>Add elimination process of skin-like parts like wrist, forearm and face.</li>
+<li>Add feature representation for the “fist” gesture.</li>
+<li>Make prediction according to probability, rather than directly output the prediction frame by frame. </li>
+</ol>
+<h2 id="Limitations"><a href="#Limitations" class="headerlink" title="Limitations"></a>Limitations</h2><p>Two most evident drawbacks mentioned before are influences of change in background colors and lighting conditions. One thing I found is that the camera on the phone has auto-adjustment like auto-exposure and auto white balancing which change the color of the hand and background as the view or position of the hand changes. This makes color-based methods not desirable to be used on mobile phones. The only solution is either finding ways to disable the auto adjustment, which I think is not possible on most of the devices, or abandoning the methods and instead use hand detection methods based on texture-like features together with some machine learning methods.</p>
+<p>In addition, since low-level features are used to represent the gesture, some gestures can not be represented. Also it is hard to eliminate false-positives.</p>
+<p><a href="https://github.com/eaglesky/HandGestureApp" target="_blank" rel="external">Source Code</a></p>
+<h1 id="Acknowledgments"><a href="#Acknowledgments" class="headerlink" title="Acknowledgments"></a>Acknowledgments</h1><ol>
+<li>The idea of presampling is from Simen Andresen’s <a href="http://simena86.github.io/blog/2013/08/12/hand-tracking-and-recognition-with-opencv/" target="_blank" rel="external">blog</a> </li>
+<li>Used LibSVM on Android implemented by Kun Li. <a href="https://github.com/cnbuff410/Libsvm-androidjni" target="_blank" rel="external">link</a></li>
+<li>Used <a href="https://github.com/iPaulPro/aFileChooser" target="_blank" rel="external">aFileChooser library</a> to implement the file chooser.</li>
+<li>To implement mapping human gestures to Android apps, <a href="http://blog.csdn.net/qinjuning/article/details/6867806" target="_blank" rel="external">this article</a> is quite helpful.</li>
+</ol>
+
+            
+                
+
+            
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">TAGGED IN</span><br/>
+                
+    <a class="tag tag--primary tag--small t-link" href="/tags/Android/">Android</a> <a class="tag tag--primary tag--small t-link" href="/tags/computer-vision/">computer vision</a> <a class="tag tag--primary tag--small t-link" href="/tags/machine-learning/">machine learning</a>
+
+            </div>
+        
+        <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/01/02/MigrateDisqus/"  data-tooltip="Migrate Disqus Comments to a New URL Using URL Mapper">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/12/26/TranquilPeakImageAlignment/" data-tooltip="About Aligning Multiple Images on the Same Line in the TranquilPeak Theme of Hexo">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions"  href="#btn-open-shareoptions">
+                <i class="fa fa-share-alt"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://eaglesky.github.io/2015/12/26/HandGestureRecognition/">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://eaglesky.github.io/2015/12/26/HandGestureRecognition/">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://eaglesky.github.io/2015/12/26/HandGestureRecognition/">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
+        
+            <li class="post-action">
+                <a class="post-action-btn btn btn--default" href="#disqus_thread">
+                    <i class="fa fa-comment-o"></i>
+                </a>
+            </li>
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#">
+            
+                <i class="fa fa-arrow-up"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+            
+                <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+            
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2016 Yalun Qin. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="1">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/01/02/MigrateDisqus/"  data-tooltip="Migrate Disqus Comments to a New URL Using URL Mapper">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/12/26/TranquilPeakImageAlignment/" data-tooltip="About Aligning Multiple Images on the Same Line in the TranquilPeak Theme of Hexo">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions"  href="#btn-open-shareoptions">
+                <i class="fa fa-share-alt"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://eaglesky.github.io/2015/12/26/HandGestureRecognition/">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://eaglesky.github.io/2015/12/26/HandGestureRecognition/">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://eaglesky.github.io/2015/12/26/HandGestureRecognition/">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
+        
+            <li class="post-action">
+                <a class="post-action-btn btn btn--default" href="#disqus_thread">
+                    <i class="fa fa-comment-o"></i>
+                </a>
+            </li>
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#">
+            
+                <i class="fa fa-arrow-up"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                <div id="share-options-bar" class="share-options-bar" data-behavior="1">
+    <ul class="share-options">
+        <li class="share-option">
+            <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://eaglesky.github.io/2015/12/26/HandGestureRecognition/">
+                <i class="fa fa-google-plus"></i><span class="">Share on Google Plus</span>
+            </a>
+        </li>
+        <li class="share-option">
+            <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://eaglesky.github.io/2015/12/26/HandGestureRecognition/">
+                <i class="fa fa-facebook-official"></i><span>Share on Facebook</span>
+            </a>
+        </li>
+        <li class="share-option">
+            <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://eaglesky.github.io/2015/12/26/HandGestureRecognition/">
+                <i class="fa fa-twitter"></i><span>Share on Twitter</span>
+            </a>
+        </li>
+    </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+            
+        </div>
+        
+
+
+    
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-remove"></i>
+        </div>
+        
+            <img id="about-card-picture" src="http://www.gravatar.com/avatar/7e85ef7ac7d7263b525e55e4408151a4?s=110"/>
+        
+            <h4 id="about-card-name">Yalun Qin</h4>
+        
+            <h5 id="about-card-bio"><p>Hey I’m Yalun!<br> allenchin1990@gmail.com</p>
+</h5>
+        
+        
+            <h5 id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                <p>Software Engineer</p>
+
+            </h5>
+        
+        
+            <h5 id="about-card-location">
+                <i class="fa fa-map-marker"></i>
+                <br/>
+                San Francisco Bay Area
+            </h5>
+        
+    </div>
+</div>
+
+        
+<div id="cover" style="background-image:url('https://farm2.staticflickr.com/1569/24064703426_c1fa9c3ee6_h.jpg');"></div>
+    
+<!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+</body>
+    <!--SCRIPTS-->
+<script src="/assets/js/jquery.js" type="text/javascript"></script>
+<script src="/assets/js/jquery.fancybox.js" type="text/javascript"></script>
+<script src="/assets/js/jquery.fancybox-thumbs.js" type="text/javascript"></script>
+<script src="/assets/js/tranquilpeak.js" type="text/javascript"></script>
+<!--SCRIPTS END-->
+
+    
+        <script>
+             var disqus_config = function () {
+                 this.page.url = 'http://eaglesky.github.io/2015/12/26/HandGestureRecognition/';
+             };
+            (function() {
+                var d = document, s = d.createElement('script');
+                var disqus_shortname = 'eaglesky';
+                s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+
+
+    <script type="text/javascript">
+        (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+                (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+            e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+        })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+        _st('install','FdJaNFHgUJY_8fxMdWNj','2.0.0');
+    </script>
+
+
+</html>

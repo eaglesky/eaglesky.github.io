@@ -1,0 +1,1161 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Eaglesky&#39;s Blog">
+    <title> - Eaglesky&#39;s Blog</title>
+    <meta name="author" content="Yalun Qin">
+    
+    
+        <link rel="icon" href="https://farm6.staticflickr.com/5796/24064690136_786618ac9c_m.jpg">
+    
+    
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+    
+    <meta name="description" content="&amp;lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&amp;gt;
+
+
+
+
+ARLK: src/svm.cpp File Reference
+
+
+
+
+
+
+  $(document).ready(function() { se">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="Eaglesky's Blog">
+<meta property="og:url" content="http://eaglesky.github.io/ARLK_html/svm_8cpp.html">
+<meta property="og:site_name" content="Eaglesky's Blog">
+<meta property="og:description" content="&amp;lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&amp;gt;
+
+
+
+
+ARLK: src/svm.cpp File Reference
+
+
+
+
+
+
+  $(document).ready(function() { se">
+<meta property="og:image" content="http://eaglesky.github.io/search/mag_sel.png">
+<meta property="og:image" content="http://eaglesky.github.io/search/close.png">
+<meta property="og:image" content="http://eaglesky.github.io/doxygen.png">
+<meta property="og:updated_time" content="2016-05-21T22:12:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Eaglesky's Blog">
+<meta name="twitter:description" content="&amp;lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&amp;gt;
+
+
+
+
+ARLK: src/svm.cpp File Reference
+
+
+
+
+
+
+  $(document).ready(function() { se">
+    
+    
+        
+    
+    
+        <meta property="og:image" content="http://www.gravatar.com/avatar/7e85ef7ac7d7263b525e55e4408151a4?s=640"/>
+    
+    
+    
+    
+    <!--STYLES-->
+    <link rel="stylesheet" href="/assets/css/font-awesome.css" type="text/css">
+    <link rel="stylesheet" href="/assets/css/jquery.fancybox.css" type="text/css">
+    <link rel="stylesheet" href="/assets/css/jquery.fancybox-thumbs.css" type="text/css">
+    <link rel="stylesheet" href="/assets/css/tranquilpeak.css" type="text/css">
+    <!--STYLES END-->
+    
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-49504412-1']);
+        _gaq.push(['_trackPageview']);
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+        
+    
+
+<header id="header" data-behavior="1">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <h1 class="header-title">
+        <a class="header-title-link" href="/ ">Eaglesky&#39;s Blog</a>
+    </h1>
+    
+        
+            <a  class="header-right-picture "
+                href="/#about">
+        
+        
+            <img class="header-picture" src="http://www.gravatar.com/avatar/7e85ef7ac7d7263b525e55e4408151a4?s=90"/>
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+    
+
+<nav id="sidebar" data-behavior="1">
+    
+        <div class="sidebar-profile">
+            <a href="/#about">
+                    <img class="sidebar-profile-picture" src="http://www.gravatar.com/avatar/7e85ef7ac7d7263b525e55e4408151a4?s=110"/>
+            </a>
+            <span class="sidebar-profile-name">Yalun Qin</span>
+        </div>
+    
+    
+        <ul class="sidebar-buttons">
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/ "
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+                    <span class="sidebar-button-desc">Home</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/#about"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+                    <span class="sidebar-button-desc">About</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/projects"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-picture-o"></i>
+                    <span class="sidebar-button-desc">Projects</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/all-archives"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+                    <span class="sidebar-button-desc">Archives</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/all-categories"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+                    <span class="sidebar-button-desc">Categories</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/all-tags"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+                    <span class="sidebar-button-desc">Tags</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link st-search-show-outputs"
+                         href="/#search"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-search"></i>
+                    <span class="sidebar-button-desc">Search</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+        <ul class="sidebar-buttons">
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link " href="https://github.com/eaglesky" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+                    <span class="sidebar-button-desc">GitHub</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link " href="https://www.linkedin.com/in/yalunqin" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-linkedin"></i>
+                    <span class="sidebar-button-desc">LinkedIn</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/atom.xml"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+                    <span class="sidebar-button-desc">RSS</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+</nav>
+
+            
+            <div id="main" data-behavior="1"
+                 class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post" itemscope itemType="http://schema.org/BlogPosting">
+    
+    
+        <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title" itemprop="headline">
+            (no title)
+        </h1>
+    
+    <div class="post-meta">
+    <time itemprop="datePublished" content="Sat May 21 2016 15:12:00 GMT-0700">
+	
+		    May 21, 2016
+    	
+    </time>
+    
+</div>
+</div>
+    
+    <div class="post-content markdown" itemprop="articleBody">
+        <div class="main-content-wrap">
+            <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=9">
+<title>ARLK: src/svm.cpp File Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">ARLK
+   &#160;<span id="projectnumber">0.1.0</span>
+   </div>
+   <div id="projectbrief">Action Recognition Library for Kinect</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.8.2 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
+      <li><a href="annotated.html"><span>Classes</span></a></li>
+      <li class="current"><a href="files.html"><span>Files</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()" alt="">
+          <input type="text" id="MSearchField" value="Search" accesskey="S" onfocus="searchBox.OnSearchFieldFocus(true)" onblur="searchBox.OnSearchFieldFocus(false)" onkeyup="searchBox.OnSearchFieldChange(event)">
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()" target="_blank" rel="external"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>File&#160;Members</span></a></li>
+    </ul>
+  </div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()" onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)" target="_blank" rel="external"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)" target="_blank" rel="external"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)" target="_blank" rel="external"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)" target="_blank" rel="external"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)" target="_blank" rel="external"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)" target="_blank" rel="external"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)" target="_blank" rel="external"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)" target="_blank" rel="external"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)" target="_blank" rel="external"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)" target="_blank" rel="external"><span class="SelectionMark">&#160;</span>Macros</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#define-members">Macros</a> &#124;
+<a href="#typedef-members">Typedefs</a> &#124;
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
+  <div class="headertitle">
+<div class="title">svm.cpp File Reference</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &lt;math.h&gt;</code><br>
+<code>#include &lt;stdio.h&gt;</code><br>
+<code>#include &lt;stdlib.h&gt;</code><br>
+<code>#include &lt;ctype.h&gt;</code><br>
+<code>#include &lt;float.h&gt;</code><br>
+<code>#include &lt;string.h&gt;</code><br>
+<code>#include &lt;stdarg.h&gt;</code><br>
+<code>#include &lt;limits.h&gt;</code><br>
+<code>#include &lt;locale.h&gt;</code><br>
+<code>#include &quot;<a class="el" href="svm_8h_source.html">svm.h</a>&quot;</code><br>
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cache.html">Cache</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_q_matrix.html">QMatrix</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kernel.html">Kernel</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_solver.html">Solver</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_solver_1_1_solution_info.html">Solver::SolutionInfo</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_solver___n_u.html">Solver_NU</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_v_c___q.html">SVC_Q</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_n_e___c_l_a_s_s___q.html">ONE_CLASS_Q</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_v_r___q.html">SVR_Q</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdecision__function.html">decision_function</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:a12c2040f25d8e3a7b9e1c2024c618cb6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="svm_8cpp.html#a12c2040f25d8e3a7b9e1c2024c618cb6">INF</a>&#160;&#160;&#160;HUGE_VAL</td></tr>
+<tr class="separator:a12c2040f25d8e3a7b9e1c2024c618cb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d8c9c145887af5174ba4cc6789862ad"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="svm_8cpp.html#a3d8c9c145887af5174ba4cc6789862ad">TAU</a>&#160;&#160;&#160;1e-12</td></tr>
+<tr class="separator:a3d8c9c145887af5174ba4cc6789862ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9191047fd644a5f519152ecb4aa60357"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="svm_8cpp.html#a9191047fd644a5f519152ecb4aa60357">Malloc</a>(type, n)&#160;&#160;&#160;(type *)malloc((n)*sizeof(type))</td></tr>
+<tr class="separator:a9191047fd644a5f519152ecb4aa60357"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:a8755d90a54ecfb8d15051af3e0542592"><td class="memItemLeft" align="right" valign="top">typedef float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="svm_8cpp.html#a8755d90a54ecfb8d15051af3e0542592">Qfloat</a></td></tr>
+<tr class="separator:a8755d90a54ecfb8d15051af3e0542592"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0fd9ce9d735064461bebfe6037026093"><td class="memItemLeft" align="right" valign="top">typedef signed char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="svm_8cpp.html#a0fd9ce9d735064461bebfe6037026093">schar</a></td></tr>
+<tr class="separator:a0fd9ce9d735064461bebfe6037026093"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:ae6e4f84556602fab57ec5a330514b613"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structsvm__model.html">svm_model</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="svm_8cpp.html#ae6e4f84556602fab57ec5a330514b613">svm_train</a> (const <a class="el" href="structsvm__problem.html">svm_problem</a> *prob, const <a class="el" href="structsvm__parameter.html">svm_parameter</a> *param)</td></tr>
+<tr class="separator:ae6e4f84556602fab57ec5a330514b613"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f5a9c2ab91444d122c461511af9efd2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="svm_8cpp.html#a3f5a9c2ab91444d122c461511af9efd2">svm_cross_validation</a> (const <a class="el" href="structsvm__problem.html">svm_problem</a> *prob, const <a class="el" href="structsvm__parameter.html">svm_parameter</a> *param, int nr_fold, double *target)</td></tr>
+<tr class="separator:a3f5a9c2ab91444d122c461511af9efd2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a28e647915c662f2862abadb987784875"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="svm_8cpp.html#a28e647915c662f2862abadb987784875">svm_get_svm_type</a> (const <a class="el" href="structsvm__model.html">svm_model</a> *model)</td></tr>
+<tr class="separator:a28e647915c662f2862abadb987784875"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a187f866fb5372371ad53090c691d8528"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="svm_8cpp.html#a187f866fb5372371ad53090c691d8528">svm_get_nr_class</a> (const <a class="el" href="structsvm__model.html">svm_model</a> *model)</td></tr>
+<tr class="separator:a187f866fb5372371ad53090c691d8528"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0256f035fcd831cc9627d7da8657f65c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="svm_8cpp.html#a0256f035fcd831cc9627d7da8657f65c">svm_get_labels</a> (const <a class="el" href="structsvm__model.html">svm_model</a> *model, int *label)</td></tr>
+<tr class="separator:a0256f035fcd831cc9627d7da8657f65c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f83cf22bf61483173a4d699568fb5f8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="svm_8cpp.html#a9f83cf22bf61483173a4d699568fb5f8">svm_get_sv_indices</a> (const <a class="el" href="structsvm__model.html">svm_model</a> *model, int *indices)</td></tr>
+<tr class="separator:a9f83cf22bf61483173a4d699568fb5f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5cda65b236b83631dcb3d1c6e437e3ad"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="svm_8cpp.html#a5cda65b236b83631dcb3d1c6e437e3ad">svm_get_nr_sv</a> (const <a class="el" href="structsvm__model.html">svm_model</a> *model)</td></tr>
+<tr class="separator:a5cda65b236b83631dcb3d1c6e437e3ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a40c2f7a0d7e827b1b987959d2e847844"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="svm_8cpp.html#a40c2f7a0d7e827b1b987959d2e847844">svm_get_svr_probability</a> (const <a class="el" href="structsvm__model.html">svm_model</a> *model)</td></tr>
+<tr class="separator:a40c2f7a0d7e827b1b987959d2e847844"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aabe5223ca8496af644883d8063007db2"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="svm_8cpp.html#aabe5223ca8496af644883d8063007db2">svm_predict_values</a> (const <a class="el" href="structsvm__model.html">svm_model</a> *model, const <a class="el" href="structsvm__node.html">svm_node</a> *x, double *dec_values)</td></tr>
+<tr class="separator:aabe5223ca8496af644883d8063007db2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e5816ec29e6c51bc3daeab47cb7e8ef"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="svm_8cpp.html#a1e5816ec29e6c51bc3daeab47cb7e8ef">svm_predict</a> (const <a class="el" href="structsvm__model.html">svm_model</a> *model, const <a class="el" href="structsvm__node.html">svm_node</a> *x)</td></tr>
+<tr class="separator:a1e5816ec29e6c51bc3daeab47cb7e8ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa605ffa3e514ec953de3963f804b011c"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="svm_8cpp.html#aa605ffa3e514ec953de3963f804b011c">svm_predict_probability</a> (const <a class="el" href="structsvm__model.html">svm_model</a> *model, const <a class="el" href="structsvm__node.html">svm_node</a> *x, double *prob_estimates)</td></tr>
+<tr class="separator:aa605ffa3e514ec953de3963f804b011c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af5b82bcc256ba9d6034d94f28d3c8512"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="svm_8cpp.html#af5b82bcc256ba9d6034d94f28d3c8512">svm_save_model</a> (const char *model_file_name, const <a class="el" href="structsvm__model.html">svm_model</a> *model)</td></tr>
+<tr class="separator:af5b82bcc256ba9d6034d94f28d3c8512"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e6ebc4bfaa5017e9336a28d8841097c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structsvm__model.html">svm_model</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="svm_8cpp.html#a3e6ebc4bfaa5017e9336a28d8841097c">svm_load_model</a> (const char *model_file_name)</td></tr>
+<tr class="separator:a3e6ebc4bfaa5017e9336a28d8841097c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aacfd6b0d366697f63c942036b93370d4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="svm_8cpp.html#aacfd6b0d366697f63c942036b93370d4">svm_free_model_content</a> (<a class="el" href="structsvm__model.html">svm_model</a> *model_ptr)</td></tr>
+<tr class="separator:aacfd6b0d366697f63c942036b93370d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a300e06f7195c7ccb83571580d5865923"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="svm_8cpp.html#a300e06f7195c7ccb83571580d5865923">svm_free_and_destroy_model</a> (<a class="el" href="structsvm__model.html">svm_model</a> **model_ptr_ptr)</td></tr>
+<tr class="separator:a300e06f7195c7ccb83571580d5865923"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a192f7f718da0b288dacc446d72b5a77a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="svm_8cpp.html#a192f7f718da0b288dacc446d72b5a77a">svm_destroy_param</a> (<a class="el" href="structsvm__parameter.html">svm_parameter</a> *param)</td></tr>
+<tr class="separator:a192f7f718da0b288dacc446d72b5a77a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a73fd8a0ae428e25666c89c1e29274984"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="svm_8cpp.html#a73fd8a0ae428e25666c89c1e29274984">svm_check_parameter</a> (const <a class="el" href="structsvm__problem.html">svm_problem</a> *prob, const <a class="el" href="structsvm__parameter.html">svm_parameter</a> *param)</td></tr>
+<tr class="separator:a73fd8a0ae428e25666c89c1e29274984"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a15f0af9b6487b426e68b467f1949e975"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="svm_8cpp.html#a15f0af9b6487b426e68b467f1949e975">svm_check_probability_model</a> (const <a class="el" href="structsvm__model.html">svm_model</a> *model)</td></tr>
+<tr class="separator:a15f0af9b6487b426e68b467f1949e975"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a308f7948988441f4a1a5c8c8abc367be"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="svm_8cpp.html#a308f7948988441f4a1a5c8c8abc367be">svm_set_print_string_function</a> (void(*print_func)(const char *))</td></tr>
+<tr class="separator:a308f7948988441f4a1a5c8c8abc367be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a9ba41253b462f42e64917cc38e0f2cc7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="svm_8cpp.html#a9ba41253b462f42e64917cc38e0f2cc7">libsvm_version</a> = <a class="el" href="svm_8h.html#ac7f5361b69ddd196a885f142b3c1d261">LIBSVM_VERSION</a></td></tr>
+<tr class="separator:a9ba41253b462f42e64917cc38e0f2cc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Macro Definition Documentation</h2>
+<a class="anchor" id="a12c2040f25d8e3a7b9e1c2024c618cb6"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define INF&#160;&#160;&#160;HUGE_VAL</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a9191047fd644a5f519152ecb4aa60357"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define Malloc</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">type, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">n&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;(type *)malloc((n)*sizeof(type))</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a3d8c9c145887af5174ba4cc6789862ad"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define TAU&#160;&#160;&#160;1e-12</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Typedef Documentation</h2>
+<a class="anchor" id="a8755d90a54ecfb8d15051af3e0542592"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef float <a class="el" href="svm_8cpp.html#a8755d90a54ecfb8d15051af3e0542592">Qfloat</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a0fd9ce9d735064461bebfe6037026093"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef signed char <a class="el" href="svm_8cpp.html#a0fd9ce9d735064461bebfe6037026093">schar</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a class="anchor" id="a73fd8a0ae428e25666c89c1e29274984"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* svm_check_parameter </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structsvm__problem.html">svm_problem</a> *&#160;</td>
+          <td class="paramname"><em>prob</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structsvm__parameter.html">svm_parameter</a> *&#160;</td>
+          <td class="paramname"><em>param</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a15f0af9b6487b426e68b467f1949e975"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int svm_check_probability_model </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structsvm__model.html">svm_model</a> *&#160;</td>
+          <td class="paramname"><em>model</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a3f5a9c2ab91444d122c461511af9efd2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void svm_cross_validation </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structsvm__problem.html">svm_problem</a> *&#160;</td>
+          <td class="paramname"><em>prob</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structsvm__parameter.html">svm_parameter</a> *&#160;</td>
+          <td class="paramname"><em>param</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>nr_fold</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double *&#160;</td>
+          <td class="paramname"><em>target</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a192f7f718da0b288dacc446d72b5a77a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void svm_destroy_param </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structsvm__parameter.html">svm_parameter</a> *&#160;</td>
+          <td class="paramname"><em>param</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a300e06f7195c7ccb83571580d5865923"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void svm_free_and_destroy_model </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structsvm__model.html">svm_model</a> **&#160;</td>
+          <td class="paramname"><em>model_ptr_ptr</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="aacfd6b0d366697f63c942036b93370d4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void svm_free_model_content </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structsvm__model.html">svm_model</a> *&#160;</td>
+          <td class="paramname"><em>model_ptr</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a0256f035fcd831cc9627d7da8657f65c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void svm_get_labels </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structsvm__model.html">svm_model</a> *&#160;</td>
+          <td class="paramname"><em>model</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>label</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a187f866fb5372371ad53090c691d8528"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int svm_get_nr_class </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structsvm__model.html">svm_model</a> *&#160;</td>
+          <td class="paramname"><em>model</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a5cda65b236b83631dcb3d1c6e437e3ad"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int svm_get_nr_sv </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structsvm__model.html">svm_model</a> *&#160;</td>
+          <td class="paramname"><em>model</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a9f83cf22bf61483173a4d699568fb5f8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void svm_get_sv_indices </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structsvm__model.html">svm_model</a> *&#160;</td>
+          <td class="paramname"><em>model</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>indices</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a28e647915c662f2862abadb987784875"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int svm_get_svm_type </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structsvm__model.html">svm_model</a> *&#160;</td>
+          <td class="paramname"><em>model</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a40c2f7a0d7e827b1b987959d2e847844"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double svm_get_svr_probability </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structsvm__model.html">svm_model</a> *&#160;</td>
+          <td class="paramname"><em>model</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a3e6ebc4bfaa5017e9336a28d8841097c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structsvm__model.html">svm_model</a>* svm_load_model </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>model_file_name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">read</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a1e5816ec29e6c51bc3daeab47cb7e8ef"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double svm_predict </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structsvm__model.html">svm_model</a> *&#160;</td>
+          <td class="paramname"><em>model</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structsvm__node.html">svm_node</a> *&#160;</td>
+          <td class="paramname"><em>x</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="aa605ffa3e514ec953de3963f804b011c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double svm_predict_probability </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structsvm__model.html">svm_model</a> *&#160;</td>
+          <td class="paramname"><em>model</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structsvm__node.html">svm_node</a> *&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double *&#160;</td>
+          <td class="paramname"><em>prob_estimates</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="aabe5223ca8496af644883d8063007db2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double svm_predict_values </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structsvm__model.html">svm_model</a> *&#160;</td>
+          <td class="paramname"><em>model</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structsvm__node.html">svm_node</a> *&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double *&#160;</td>
+          <td class="paramname"><em>dec_values</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="af5b82bcc256ba9d6034d94f28d3c8512"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int svm_save_model </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>model_file_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structsvm__model.html">svm_model</a> *&#160;</td>
+          <td class="paramname"><em>model</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a308f7948988441f4a1a5c8c8abc367be"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void svm_set_print_string_function </td>
+          <td>(</td>
+          <td class="paramtype">void(*)(const char *)&#160;</td>
+          <td class="paramname"><em>print_func</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ae6e4f84556602fab57ec5a330514b613"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structsvm__model.html">svm_model</a>* svm_train </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structsvm__problem.html">svm_problem</a> *&#160;</td>
+          <td class="paramname"><em>prob</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structsvm__parameter.html">svm_parameter</a> *&#160;</td>
+          <td class="paramname"><em>param</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Variable Documentation</h2>
+<a class="anchor" id="a9ba41253b462f42e64917cc38e0f2cc7"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int libsvm_version = <a class="el" href="svm_8h.html#ac7f5361b69ddd196a885f142b3c1d261">LIBSVM_VERSION</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"><address class="footer"><small>
+Generated on Fri May 31 2013 10:57:38 for ARLK by &#160;<a href="http://www.doxygen.org/index.html" target="_blank" rel="external">
+<img class="footer" src="doxygen.png" alt="doxygen">
+</a> 1.8.2
+</small></address>
+</body>
+</html>
+
+            
+                
+
+            
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+        <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--disabled">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--disabled">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions"  href="#btn-open-shareoptions">
+                <i class="fa fa-share-alt"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://eaglesky.github.io/ARLK_html/svm_8cpp.html">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://eaglesky.github.io/ARLK_html/svm_8cpp.html">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://eaglesky.github.io/ARLK_html/svm_8cpp.html">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
+        
+            <li class="post-action">
+                <a class="post-action-btn btn btn--default" href="#disqus_thread">
+                    <i class="fa fa-comment-o"></i>
+                </a>
+            </li>
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#">
+            
+                <i class="fa fa-arrow-up"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+            
+                <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+            
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2016 Yalun Qin. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+        </div>
+        
+
+
+    
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-remove"></i>
+        </div>
+        
+            <img id="about-card-picture" src="http://www.gravatar.com/avatar/7e85ef7ac7d7263b525e55e4408151a4?s=110"/>
+        
+            <h4 id="about-card-name">Yalun Qin</h4>
+        
+            <h5 id="about-card-bio"><p>Hey I’m Yalun!<br> allenchin1990@gmail.com</p>
+</h5>
+        
+        
+            <h5 id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                <p>Software Engineer</p>
+
+            </h5>
+        
+        
+            <h5 id="about-card-location">
+                <i class="fa fa-map-marker"></i>
+                <br/>
+                San Francisco Bay Area
+            </h5>
+        
+    </div>
+</div>
+
+        
+<div id="cover" style="background-image:url('https://farm2.staticflickr.com/1569/24064703426_c1fa9c3ee6_h.jpg');"></div>
+    </body>
+    <!--SCRIPTS-->
+<script src="/assets/js/jquery.js" type="text/javascript"></script>
+<script src="/assets/js/jquery.fancybox.js" type="text/javascript"></script>
+<script src="/assets/js/jquery.fancybox-thumbs.js" type="text/javascript"></script>
+<script src="/assets/js/tranquilpeak.js" type="text/javascript"></script>
+<!--SCRIPTS END-->
+
+    
+        <script>
+             var disqus_config = function () {
+                 this.page.url = 'http://eaglesky.github.io/ARLK_html/svm_8cpp.html';
+             };
+            (function() {
+                var d = document, s = d.createElement('script');
+                var disqus_shortname = 'eaglesky';
+                s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+
+
+    <script type="text/javascript">
+        (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+                (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+            e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+        })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+        _st('install','FdJaNFHgUJY_8fxMdWNj','2.0.0');
+    </script>
+
+
+</html>

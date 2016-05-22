@@ -1,0 +1,647 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Eaglesky&#39;s Blog">
+    <title> - Eaglesky&#39;s Blog</title>
+    <meta name="author" content="Yalun Qin">
+    
+    
+        <link rel="icon" href="https://farm6.staticflickr.com/5796/24064690136_786618ac9c_m.jpg">
+    
+    
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+    
+    <meta name="description" content="&amp;lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&amp;gt;
+
+
+
+
+ARLK: include/svm.h Source File
+
+
+
+
+
+
+  $(document).ready(function() { sea">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="Eaglesky's Blog">
+<meta property="og:url" content="http://eaglesky.github.io/ARLK_html/svm_8h_source.html">
+<meta property="og:site_name" content="Eaglesky's Blog">
+<meta property="og:description" content="&amp;lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&amp;gt;
+
+
+
+
+ARLK: include/svm.h Source File
+
+
+
+
+
+
+  $(document).ready(function() { sea">
+<meta property="og:image" content="http://eaglesky.github.io/search/mag_sel.png">
+<meta property="og:image" content="http://eaglesky.github.io/search/close.png">
+<meta property="og:image" content="http://eaglesky.github.io/doxygen.png">
+<meta property="og:updated_time" content="2016-05-21T22:12:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Eaglesky's Blog">
+<meta name="twitter:description" content="&amp;lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&amp;gt;
+
+
+
+
+ARLK: include/svm.h Source File
+
+
+
+
+
+
+  $(document).ready(function() { sea">
+    
+    
+        
+    
+    
+        <meta property="og:image" content="http://www.gravatar.com/avatar/7e85ef7ac7d7263b525e55e4408151a4?s=640"/>
+    
+    
+    
+    
+    <!--STYLES-->
+    <link rel="stylesheet" href="/assets/css/font-awesome.css" type="text/css">
+    <link rel="stylesheet" href="/assets/css/jquery.fancybox.css" type="text/css">
+    <link rel="stylesheet" href="/assets/css/jquery.fancybox-thumbs.css" type="text/css">
+    <link rel="stylesheet" href="/assets/css/tranquilpeak.css" type="text/css">
+    <!--STYLES END-->
+    
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-49504412-1']);
+        _gaq.push(['_trackPageview']);
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+        
+    
+
+<header id="header" data-behavior="1">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <h1 class="header-title">
+        <a class="header-title-link" href="/ ">Eaglesky&#39;s Blog</a>
+    </h1>
+    
+        
+            <a  class="header-right-picture "
+                href="/#about">
+        
+        
+            <img class="header-picture" src="http://www.gravatar.com/avatar/7e85ef7ac7d7263b525e55e4408151a4?s=90"/>
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+    
+
+<nav id="sidebar" data-behavior="1">
+    
+        <div class="sidebar-profile">
+            <a href="/#about">
+                    <img class="sidebar-profile-picture" src="http://www.gravatar.com/avatar/7e85ef7ac7d7263b525e55e4408151a4?s=110"/>
+            </a>
+            <span class="sidebar-profile-name">Yalun Qin</span>
+        </div>
+    
+    
+        <ul class="sidebar-buttons">
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/ "
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+                    <span class="sidebar-button-desc">Home</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/#about"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+                    <span class="sidebar-button-desc">About</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/projects"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-picture-o"></i>
+                    <span class="sidebar-button-desc">Projects</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/all-archives"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+                    <span class="sidebar-button-desc">Archives</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/all-categories"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+                    <span class="sidebar-button-desc">Categories</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/all-tags"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+                    <span class="sidebar-button-desc">Tags</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link st-search-show-outputs"
+                         href="/#search"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-search"></i>
+                    <span class="sidebar-button-desc">Search</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+        <ul class="sidebar-buttons">
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link " href="https://github.com/eaglesky" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+                    <span class="sidebar-button-desc">GitHub</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link " href="https://www.linkedin.com/in/yalunqin" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-linkedin"></i>
+                    <span class="sidebar-button-desc">LinkedIn</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/atom.xml"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+                    <span class="sidebar-button-desc">RSS</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+</nav>
+
+            
+            <div id="main" data-behavior="1"
+                 class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post" itemscope itemType="http://schema.org/BlogPosting">
+    
+    
+        <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title" itemprop="headline">
+            (no title)
+        </h1>
+    
+    <div class="post-meta">
+    <time itemprop="datePublished" content="Sat May 21 2016 15:12:00 GMT-0700">
+	
+		    May 21, 2016
+    	
+    </time>
+    
+</div>
+</div>
+    
+    <div class="post-content markdown" itemprop="articleBody">
+        <div class="main-content-wrap">
+            <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=9">
+<title>ARLK: include/svm.h Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">ARLK
+   &#160;<span id="projectnumber">0.1.0</span>
+   </div>
+   <div id="projectbrief">Action Recognition Library for Kinect</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.8.2 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
+      <li><a href="annotated.html"><span>Classes</span></a></li>
+      <li class="current"><a href="files.html"><span>Files</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()" alt="">
+          <input type="text" id="MSearchField" value="Search" accesskey="S" onfocus="searchBox.OnSearchFieldFocus(true)" onblur="searchBox.OnSearchFieldFocus(false)" onkeyup="searchBox.OnSearchFieldChange(event)">
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()" target="_blank" rel="external"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>File&#160;Members</span></a></li>
+    </ul>
+  </div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()" onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)" target="_blank" rel="external"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)" target="_blank" rel="external"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)" target="_blank" rel="external"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)" target="_blank" rel="external"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)" target="_blank" rel="external"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)" target="_blank" rel="external"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)" target="_blank" rel="external"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)" target="_blank" rel="external"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)" target="_blank" rel="external"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)" target="_blank" rel="external"><span class="SelectionMark">&#160;</span>Macros</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">svm.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="svm_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef _LIBSVM_H</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define _LIBSVM_H</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00004"></a><span class="lineno"><a class="code" href="svm_8h.html#ac7f5361b69ddd196a885f142b3c1d261">    4</a></span>&#160;<span class="preprocessor">#define LIBSVM_VERSION 317</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor"></span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="svm_8h.html#a9ba41253b462f42e64917cc38e0f2cc7">libsvm_version</a>;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div>
+<div class="line"><a name="l00012"></a><span class="lineno"><a class="code" href="structsvm__node.html">   12</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structsvm__node.html">svm_node</a></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;{</div>
+<div class="line"><a name="l00014"></a><span class="lineno"><a class="code" href="structsvm__node.html#aa733ca75ee5a5c0f36af5ddb4c6394d9">   14</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="structsvm__node.html#aa733ca75ee5a5c0f36af5ddb4c6394d9">index</a>;</div>
+<div class="line"><a name="l00015"></a><span class="lineno"><a class="code" href="structsvm__node.html#a9ca47b8a156238d04213453f3b89e177">   15</a></span>&#160;    <span class="keywordtype">double</span> <a class="code" href="structsvm__node.html#a9ca47b8a156238d04213453f3b89e177">value</a>;</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;};</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;</div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="code" href="structsvm__problem.html">   18</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structsvm__problem.html">svm_problem</a></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;{</div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="code" href="structsvm__problem.html#a4350eb6820f0d6126bffb6264cec65b3">   20</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="structsvm__problem.html#a4350eb6820f0d6126bffb6264cec65b3">l</a>;</div>
+<div class="line"><a name="l00021"></a><span class="lineno"><a class="code" href="structsvm__problem.html#a59dec12ff090571bc9592ba9fb306780">   21</a></span>&#160;    <span class="keywordtype">double</span> *<a class="code" href="structsvm__problem.html#a59dec12ff090571bc9592ba9fb306780">y</a>;</div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="code" href="structsvm__problem.html#acddda9b49a8e38bbda079f35c2e18984">   22</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structsvm__node.html">svm_node</a> **<a class="code" href="structsvm__problem.html#acddda9b49a8e38bbda079f35c2e18984">x</a>;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;};</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
+<div class="line"><a name="l00025"></a><span class="lineno"><a class="code" href="svm_8h.html#a99fb83031ce9923c84392b4e92f956b5a8bfb80856312eb703072e02f7ebd5e6b">   25</a></span>&#160;<span class="keyword">enum</span> { <a class="code" href="svm_8h.html#a99fb83031ce9923c84392b4e92f956b5a89cc33eead98f5e072fd76dcdb8da6f8">C_SVC</a>, <a class="code" href="svm_8h.html#a99fb83031ce9923c84392b4e92f956b5aca90881af01036a7221b791eb08d03fc">NU_SVC</a>, <a class="code" href="svm_8h.html#a99fb83031ce9923c84392b4e92f956b5a8bfb80856312eb703072e02f7ebd5e6b">ONE_CLASS</a>, <a class="code" href="svm_8h.html#a99fb83031ce9923c84392b4e92f956b5ae8edabc208c6076619bdfb064b68815a">EPSILON_SVR</a>, <a class="code" href="svm_8h.html#a99fb83031ce9923c84392b4e92f956b5a9e113c85baa91dc44fe128028e384309">NU_SVR</a> }; <span class="comment">/* svm_type */</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno"><a class="code" href="svm_8h.html#abc6126af1d45847bc59afa0aa3216b04a11c1096689b7d3504dbcc4f61d854883">   26</a></span>&#160;<span class="keyword">enum</span> { <a class="code" href="svm_8h.html#abc6126af1d45847bc59afa0aa3216b04adc101ebf31c49c2d4b80b7c6f59f22cb">LINEAR</a>, <a class="code" href="svm_8h.html#abc6126af1d45847bc59afa0aa3216b04a7d85766d041d397d096dcbc0d7c793fd">POLY</a>, <a class="code" href="svm_8h.html#abc6126af1d45847bc59afa0aa3216b04a7e039b006aa5830e8c45a1ccd0c4204f">RBF</a>, <a class="code" href="svm_8h.html#abc6126af1d45847bc59afa0aa3216b04a11c1096689b7d3504dbcc4f61d854883">SIGMOID</a>, <a class="code" href="svm_8h.html#abc6126af1d45847bc59afa0aa3216b04a27a6ccce9f5a44692a040b08a6923285">PRECOMPUTED</a> }; <span class="comment">/* kernel_type */</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
+<div class="line"><a name="l00028"></a><span class="lineno"><a class="code" href="structsvm__parameter.html">   28</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structsvm__parameter.html">svm_parameter</a></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;{</div>
+<div class="line"><a name="l00030"></a><span class="lineno"><a class="code" href="structsvm__parameter.html#a3afb37272180a903df05f7b649b338f4">   30</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="structsvm__parameter.html#a3afb37272180a903df05f7b649b338f4">svm_type</a>;</div>
+<div class="line"><a name="l00031"></a><span class="lineno"><a class="code" href="structsvm__parameter.html#a4188713ba31fc3d101244a6bcc09a760">   31</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="structsvm__parameter.html#a4188713ba31fc3d101244a6bcc09a760">kernel_type</a>;</div>
+<div class="line"><a name="l00032"></a><span class="lineno"><a class="code" href="structsvm__parameter.html#afef1c4508ec0045c236a3308b0fa5138">   32</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="structsvm__parameter.html#afef1c4508ec0045c236a3308b0fa5138">degree</a>; <span class="comment">/* for poly */</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="code" href="structsvm__parameter.html#a91667b90506e171482b5fc619377110d">   33</a></span>&#160;    <span class="keywordtype">double</span> <a class="code" href="structsvm__parameter.html#a91667b90506e171482b5fc619377110d">gamma</a>;   <span class="comment">/* for poly/rbf/sigmoid */</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno"><a class="code" href="structsvm__parameter.html#a3ab3555a96a578bea6e5285a5db0a4db">   34</a></span>&#160;    <span class="keywordtype">double</span> <a class="code" href="structsvm__parameter.html#a3ab3555a96a578bea6e5285a5db0a4db">coef0</a>;   <span class="comment">/* for poly/sigmoid */</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="comment">/* these are for training only */</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno"><a class="code" href="structsvm__parameter.html#a00286b7e0767e45d68ac7abceb60c821">   37</a></span>&#160;    <span class="keywordtype">double</span> <a class="code" href="structsvm__parameter.html#a00286b7e0767e45d68ac7abceb60c821">cache_size</a>; <span class="comment">/* in MB */</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="code" href="structsvm__parameter.html#a1feab5a4e0d5842a20e544f3f944f841">   38</a></span>&#160;    <span class="keywordtype">double</span> <a class="code" href="structsvm__parameter.html#a1feab5a4e0d5842a20e544f3f944f841">eps</a>; <span class="comment">/* stopping criteria */</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno"><a class="code" href="structsvm__parameter.html#af4f905a3f7d589d86964289af3c9d812">   39</a></span>&#160;    <span class="keywordtype">double</span> <a class="code" href="structsvm__parameter.html#af4f905a3f7d589d86964289af3c9d812">C</a>;   <span class="comment">/* for C_SVC, EPSILON_SVR and NU_SVR */</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="code" href="structsvm__parameter.html#a44014738d1db5444f7f9a1ebf74e4214">   40</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="structsvm__parameter.html#a44014738d1db5444f7f9a1ebf74e4214">nr_weight</a>;      <span class="comment">/* for C_SVC */</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="code" href="structsvm__parameter.html#a06753922bb0282240f35ae7683f8d69a">   41</a></span>&#160;    <span class="keywordtype">int</span> *<a class="code" href="structsvm__parameter.html#a06753922bb0282240f35ae7683f8d69a">weight_label</a>;  <span class="comment">/* for C_SVC */</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno"><a class="code" href="structsvm__parameter.html#afff750f99180b5ddf735404496b6c196">   42</a></span>&#160;    <span class="keywordtype">double</span>* <a class="code" href="structsvm__parameter.html#afff750f99180b5ddf735404496b6c196">weight</a>;     <span class="comment">/* for C_SVC */</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="code" href="structsvm__parameter.html#a4c20c566cb61d5808e8cabd7adbc35c1">   43</a></span>&#160;    <span class="keywordtype">double</span> <a class="code" href="structsvm__parameter.html#a4c20c566cb61d5808e8cabd7adbc35c1">nu</a>;  <span class="comment">/* for NU_SVC, ONE_CLASS, and NU_SVR */</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno"><a class="code" href="structsvm__parameter.html#a3b60d7ce96137a64caca81095d1a188b">   44</a></span>&#160;    <span class="keywordtype">double</span> <a class="code" href="structsvm__parameter.html#a3b60d7ce96137a64caca81095d1a188b">p</a>;   <span class="comment">/* for EPSILON_SVR */</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno"><a class="code" href="structsvm__parameter.html#afdbccdf6a24be650d75804b783edc347">   45</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="structsvm__parameter.html#afdbccdf6a24be650d75804b783edc347">shrinking</a>;  <span class="comment">/* use the shrinking heuristics */</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="code" href="structsvm__parameter.html#afac0ef02879d7e27e17ac2a75115a7d9">   46</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="structsvm__parameter.html#afac0ef02879d7e27e17ac2a75115a7d9">probability</a>; <span class="comment">/* do probability estimates */</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;};</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="comment">// svm_model</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="comment">// </span></div>
+<div class="line"><a name="l00052"></a><span class="lineno"><a class="code" href="structsvm__model.html">   52</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structsvm__model.html">svm_model</a></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;{</div>
+<div class="line"><a name="l00054"></a><span class="lineno"><a class="code" href="structsvm__model.html#a95f43f398a173e63d0ce26911d0a9273">   54</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structsvm__parameter.html">svm_parameter</a> <a class="code" href="structsvm__model.html#a95f43f398a173e63d0ce26911d0a9273">param</a>; <span class="comment">/* parameter */</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno"><a class="code" href="structsvm__model.html#a5af6e0cfb063e8aac03c99aa9d319116">   55</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="structsvm__model.html#a5af6e0cfb063e8aac03c99aa9d319116">nr_class</a>;       <span class="comment">/* number of classes, = 2 in regression/one class svm */</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno"><a class="code" href="structsvm__model.html#ab858d7eed0bd3cc4c33c094872643d0a">   56</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="structsvm__model.html#ab858d7eed0bd3cc4c33c094872643d0a">l</a>;          <span class="comment">/* total #SV */</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno"><a class="code" href="structsvm__model.html#a96da6fe173a7150dae95bf55d5539e45">   57</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structsvm__node.html">svm_node</a> **<a class="code" href="structsvm__model.html#a96da6fe173a7150dae95bf55d5539e45">SV</a>;       <span class="comment">/* SVs (SV[l]) */</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno"><a class="code" href="structsvm__model.html#a978084d722ac886100ffcc35fc931143">   58</a></span>&#160;    <span class="keywordtype">double</span> **<a class="code" href="structsvm__model.html#a978084d722ac886100ffcc35fc931143">sv_coef</a>;   <span class="comment">/* coefficients for SVs in decision functions (sv_coef[k-1][l]) */</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno"><a class="code" href="structsvm__model.html#a16e4dea1508f93ece4384ec35c991887">   59</a></span>&#160;    <span class="keywordtype">double</span> *<a class="code" href="structsvm__model.html#a16e4dea1508f93ece4384ec35c991887">rho</a>;        <span class="comment">/* constants in decision functions (rho[k*(k-1)/2]) */</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno"><a class="code" href="structsvm__model.html#adf5f28fcdd3ca1c5b23c1f6167710a04">   60</a></span>&#160;    <span class="keywordtype">double</span> *<a class="code" href="structsvm__model.html#adf5f28fcdd3ca1c5b23c1f6167710a04">probA</a>;      <span class="comment">/* pariwise probability information */</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno"><a class="code" href="structsvm__model.html#a73ba8feaaf3c2c38c6bb81f7bcb5809e">   61</a></span>&#160;    <span class="keywordtype">double</span> *<a class="code" href="structsvm__model.html#a73ba8feaaf3c2c38c6bb81f7bcb5809e">probB</a>;</div>
+<div class="line"><a name="l00062"></a><span class="lineno"><a class="code" href="structsvm__model.html#add7f649bf78428c38a282ed8776fa433">   62</a></span>&#160;    <span class="keywordtype">int</span> *<a class="code" href="structsvm__model.html#add7f649bf78428c38a282ed8776fa433">sv_indices</a>;        <span class="comment">/* sv_indices[0,...,nSV-1] are values in [1,...,num_traning_data] to indicate SVs in the training set */</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="comment">/* for classification only */</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
+<div class="line"><a name="l00066"></a><span class="lineno"><a class="code" href="structsvm__model.html#ac66d192809e92b95875bdf8ebb749060">   66</a></span>&#160;    <span class="keywordtype">int</span> *<a class="code" href="structsvm__model.html#ac66d192809e92b95875bdf8ebb749060">label</a>;     <span class="comment">/* label of each class (label[k]) */</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno"><a class="code" href="structsvm__model.html#a1d342c9b9e5e4a6377862e13123a25ef">   67</a></span>&#160;    <span class="keywordtype">int</span> *<a class="code" href="structsvm__model.html#a1d342c9b9e5e4a6377862e13123a25ef">nSV</a>;       <span class="comment">/* number of SVs for each class (nSV[k]) */</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;                <span class="comment">/* nSV[0] + nSV[1] + ... + nSV[k-1] = l */</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="comment">/* XXX */</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno"><a class="code" href="structsvm__model.html#a2ae57ce1fa43497d151aff26c21a13a1">   70</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="structsvm__model.html#a2ae57ce1fa43497d151aff26c21a13a1">free_sv</a>;        <span class="comment">/* 1 if svm_model is created by svm_load_model*/</span></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;                <span class="comment">/* 0 if svm_model is created by svm_train */</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;};</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="keyword">struct </span><a class="code" href="structsvm__model.html">svm_model</a> *<a class="code" href="svm_8h.html#a79ce3e65d01f2be1a4e5288c588c48a8">svm_train</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code" href="structsvm__problem.html">svm_problem</a> *prob, <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code" href="structsvm__parameter.html">svm_parameter</a> *<a class="code" href="structsvm__model.html#a95f43f398a173e63d0ce26911d0a9273">param</a>);</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="keywordtype">void</span> <a class="code" href="svm_8h.html#abe12fd0b263f0b31fdce8d48d9c38a32">svm_cross_validation</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code" href="structsvm__problem.html">svm_problem</a> *prob, <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code" href="structsvm__parameter.html">svm_parameter</a> *<a class="code" href="structsvm__model.html#a95f43f398a173e63d0ce26911d0a9273">param</a>, <span class="keywordtype">int</span> nr_fold, <span class="keywordtype">double</span> *target);</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="keywordtype">int</span> <a class="code" href="svm_8h.html#ae6aefb92d3b0b1a5158bd4b15ca8f8e2">svm_save_model</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *model_file_name, <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code" href="structsvm__model.html">svm_model</a> *model);</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="keyword">struct </span><a class="code" href="structsvm__model.html">svm_model</a> *<a class="code" href="svm_8h.html#a569bb1a06e5181dfb19d66587463af4b">svm_load_model</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *model_file_name);</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="keywordtype">int</span> <a class="code" href="svm_8h.html#add0a326d36e24044cf958a420d6f4e19">svm_get_svm_type</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code" href="structsvm__model.html">svm_model</a> *model);</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="keywordtype">int</span> <a class="code" href="svm_8h.html#a73c7339cbc8a38eb9f1e8ad6fbe11ae8">svm_get_nr_class</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code" href="structsvm__model.html">svm_model</a> *model);</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="keywordtype">void</span> <a class="code" href="svm_8h.html#a1eafdf09b884847a04a72cf22ddb95f2">svm_get_labels</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code" href="structsvm__model.html">svm_model</a> *model, <span class="keywordtype">int</span> *<a class="code" href="structsvm__model.html#ac66d192809e92b95875bdf8ebb749060">label</a>);</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="keywordtype">void</span> <a class="code" href="svm_8h.html#ae61677f9adc1d3f0f6d55a4256923d43">svm_get_sv_indices</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code" href="structsvm__model.html">svm_model</a> *model, <span class="keywordtype">int</span> *<a class="code" href="structsvm__model.html#add7f649bf78428c38a282ed8776fa433">sv_indices</a>);</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="keywordtype">int</span> <a class="code" href="svm_8h.html#ae4430a93a840cff5c3d67be2c6a0de89">svm_get_nr_sv</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code" href="structsvm__model.html">svm_model</a> *model);</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="keywordtype">double</span> <a class="code" href="svm_8h.html#a3f15a9a6c23b2f0927fc48ef2f549001">svm_get_svr_probability</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code" href="structsvm__model.html">svm_model</a> *model);</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="keywordtype">double</span> <a class="code" href="svm_8h.html#aa34079376b55cfef083b8ff523d77f55">svm_predict_values</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code" href="structsvm__model.html">svm_model</a> *model, <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code" href="structsvm__node.html">svm_node</a> *x, <span class="keywordtype">double</span>* dec_values);</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="keywordtype">double</span> <a class="code" href="svm_8h.html#af7c913d98f7cd411b147f8990a97f576">svm_predict</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code" href="structsvm__model.html">svm_model</a> *model, <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code" href="structsvm__node.html">svm_node</a> *x);</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="keywordtype">double</span> <a class="code" href="svm_8h.html#a301070a1fda12e1257d76c08f97322a5">svm_predict_probability</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code" href="structsvm__model.html">svm_model</a> *model, <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code" href="structsvm__node.html">svm_node</a> *x, <span class="keywordtype">double</span>* prob_estimates);</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="keywordtype">void</span> <a class="code" href="svm_8h.html#a851dce2f69b666a414d67e0edef3ead9">svm_free_model_content</a>(<span class="keyword">struct</span> <a class="code" href="structsvm__model.html">svm_model</a> *model_ptr);</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="keywordtype">void</span> <a class="code" href="svm_8h.html#afa14733010ded94cc8f2ba177b0b24c8">svm_free_and_destroy_model</a>(<span class="keyword">struct</span> <a class="code" href="structsvm__model.html">svm_model</a> **model_ptr_ptr);</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="keywordtype">void</span> <a class="code" href="svm_8h.html#aaf17ba299f99cb74dc97f64bb29f4c06">svm_destroy_param</a>(<span class="keyword">struct</span> <a class="code" href="structsvm__parameter.html">svm_parameter</a> *<a class="code" href="structsvm__model.html#a95f43f398a173e63d0ce26911d0a9273">param</a>);</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="keyword">const</span> <span class="keywordtype">char</span> *<a class="code" href="svm_8h.html#aa72a8c645b58830df32383fd1835aad0">svm_check_parameter</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code" href="structsvm__problem.html">svm_problem</a> *prob, <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code" href="structsvm__parameter.html">svm_parameter</a> *<a class="code" href="structsvm__model.html#a95f43f398a173e63d0ce26911d0a9273">param</a>);</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="keywordtype">int</span> <a class="code" href="svm_8h.html#aeb231380b36264637caeccdae4fbad1a">svm_check_probability_model</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code" href="structsvm__model.html">svm_model</a> *model);</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="keywordtype">void</span> <a class="code" href="svm_8h.html#a308f7948988441f4a1a5c8c8abc367be">svm_set_print_string_function</a>(<span class="keywordtype">void</span> (*print_func)(<span class="keyword">const</span> <span class="keywordtype">char</span> *));</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="preprocessor"></span>}</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* _LIBSVM_H */</span><span class="preprocessor"></span></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"><address class="footer"><small>
+Generated on Fri May 31 2013 10:57:38 for ARLK by &#160;<a href="http://www.doxygen.org/index.html" target="_blank" rel="external">
+<img class="footer" src="doxygen.png" alt="doxygen">
+</a> 1.8.2
+</small></address>
+</body>
+</html>
+
+            
+                
+
+            
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+        <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--disabled">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--disabled">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions"  href="#btn-open-shareoptions">
+                <i class="fa fa-share-alt"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://eaglesky.github.io/ARLK_html/svm_8h_source.html">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://eaglesky.github.io/ARLK_html/svm_8h_source.html">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://eaglesky.github.io/ARLK_html/svm_8h_source.html">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
+        
+            <li class="post-action">
+                <a class="post-action-btn btn btn--default" href="#disqus_thread">
+                    <i class="fa fa-comment-o"></i>
+                </a>
+            </li>
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#">
+            
+                <i class="fa fa-arrow-up"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+            
+                <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+            
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2016 Yalun Qin. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+        </div>
+        
+
+
+    
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-remove"></i>
+        </div>
+        
+            <img id="about-card-picture" src="http://www.gravatar.com/avatar/7e85ef7ac7d7263b525e55e4408151a4?s=110"/>
+        
+            <h4 id="about-card-name">Yalun Qin</h4>
+        
+            <h5 id="about-card-bio"><p>Hey I’m Yalun!<br> allenchin1990@gmail.com</p>
+</h5>
+        
+        
+            <h5 id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                <p>Software Engineer</p>
+
+            </h5>
+        
+        
+            <h5 id="about-card-location">
+                <i class="fa fa-map-marker"></i>
+                <br/>
+                San Francisco Bay Area
+            </h5>
+        
+    </div>
+</div>
+
+        
+<div id="cover" style="background-image:url('https://farm2.staticflickr.com/1569/24064703426_c1fa9c3ee6_h.jpg');"></div>
+    </body>
+    <!--SCRIPTS-->
+<script src="/assets/js/jquery.js" type="text/javascript"></script>
+<script src="/assets/js/jquery.fancybox.js" type="text/javascript"></script>
+<script src="/assets/js/jquery.fancybox-thumbs.js" type="text/javascript"></script>
+<script src="/assets/js/tranquilpeak.js" type="text/javascript"></script>
+<!--SCRIPTS END-->
+
+    
+        <script>
+             var disqus_config = function () {
+                 this.page.url = 'http://eaglesky.github.io/ARLK_html/svm_8h_source.html';
+             };
+            (function() {
+                var d = document, s = d.createElement('script');
+                var disqus_shortname = 'eaglesky';
+                s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+
+
+    <script type="text/javascript">
+        (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+                (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+            e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+        })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+        _st('install','FdJaNFHgUJY_8fxMdWNj','2.0.0');
+    </script>
+
+
+</html>

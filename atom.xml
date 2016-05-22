@@ -1,0 +1,415 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title><![CDATA[Eaglesky's Blog]]></title>
+  
+  <link href="/atom.xml" rel="self"/>
+  <link href="http://eaglesky.github.io/"/>
+  <updated>2016-05-22T03:09:13.000Z</updated>
+  <id>http://eaglesky.github.io/</id>
+  
+  <author>
+    <name><![CDATA[Yalun Qin]]></name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Logged in as anonymous user after "mysql -uroot -p"]]></title>
+    <link href="http://eaglesky.github.io/2016/05/21/MySqlRootProblem/"/>
+    <id>http://eaglesky.github.io/2016/05/21/MySqlRootProblem/</id>
+    <published>2016-05-22T00:09:58.000Z</published>
+    <updated>2016-05-22T03:09:13.000Z</updated>
+    <content type="html"><![CDATA[<p>Sometimes when trying to log in MySQL as root user using <code>mysql -uroot -p</code>, the user account after login(<code>select current_user()</code>) is actually “@localhost”, without permission to do anything in the database. The user may only see very few databases. Why is that and how to solve the problem?<br><a id="more"></a></p>
+<p>I encountered this problem once when running MySQL server on my Mac laptop. MySQL version is 5.7. My root account didn’t have a password. But the logged in user was correct when I used DBeaver or other DB clients to connect to MySQL server as root. I checked the users using the DB client and it appeared that there were multiple accounts in the server, one of which was the anonymous one(“@localhost”). There was one user “root@127.0.0.1” which was what DBeaver was using. However, that user was actually NOT “root@localhost”. And since the default host of <code>mysql -uroot</code> was “localhost”, the matched user was “@locahost”, not the expected “root@localhost”. And there are usually very few privileges for the “@localhost” user, it is understandable why the user may only see very few databases after logged in.</p>
+<p>So the solution is simple. Either specify the host explicitly using <code>mysql -h 127.0.0.1 -uroot -p</code>, or create a new user “root@localhost” and grant all privileges to it.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>Sometimes when trying to log in MySQL as root user using <code>mysql -uroot -p</code>, the user account after login(<code>select current_user()</code>) is actually “@localhost”, without permission to do anything in the database. The user may only see very few databases. Why is that and how to solve the problem?<br>]]>
+    
+    </summary>
+    
+      <category term="MySQL" scheme="http://eaglesky.github.io/tags/MySQL/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Migrate Disqus Comments to a New URL Using URL Mapper]]></title>
+    <link href="http://eaglesky.github.io/2016/01/02/MigrateDisqus/"/>
+    <id>http://eaglesky.github.io/2016/01/02/MigrateDisqus/</id>
+    <published>2016-01-03T03:13:20.000Z</published>
+    <updated>2016-05-21T22:12:00.000Z</updated>
+    <content type="html"><![CDATA[<p>When migrating to a new blogging system, one important is to migrate the comments in the posts. If you use Disqus as the comment system, you can use one of the three migration tools they provide to do the job. You can find the three tools through Admin -&gt; Setup -&gt; Migration tools.<br><a id="more"></a></p>
+<blockquote><p><strong>Domain Migration Wizard</strong> - If the base domain of your website has recently changed, you’ll need to migrate the URLs of your commenting threads to use the new base domain (ex: www.old-url.com -&gt; new-awesome-url.com).<br><strong>URL Mapper</strong> - If the URL slug of your site’s posts has recently changed, you’ll need to use our URL Mapper to migrate your commenting threads from the old URL to the new one (ex: yourdomain.com/p=23 -&gt; yourdomain.com/new-page-slug).<br><strong>Redirect Crawler</strong> - If you’ve already setup 301 redirects for your site’s pages, then use our Redirect Crawler to crawl your site’s pages and migrate the URLs of your commenting threads automatically. Recommended for advanced users only.</p>
+</blockquote>
+<p>For our case ususaly URL Mapper is the best choice. Before using any of the three tools, be sure to check the considerations and limitations on the Disqus website first(especially the second one):<br><blockquote><ul>
+<li>If merging two threads together, this cannot be undone</li>
+<li>The migration tools will not migrate comments to a new Disqus shortname, so be sure to use the same shortname on the new site.</li>
+<li>Migrations can take up to 24 hours to finish, and we suggest checking its progress occasionally during that time (by looking for the updated comment threads on a page where they did not previously exist).</li>
+<li>If you’re using a custom disqus_identifier this will still play a role. If two threads are merged into the same URL and have different identifiers as well, the new thread will contain both identifiers</li>
+</ul>
+</blockquote></p>
+<p>To use the URL Mapper, all you need to do is to upload a csv file which stores all the mapping from the old URLs to the new ones. In Disqus each old thread(comments associated with a post) is identified by an URL. The new URL is the place where you want to move the old thread to. Note that the URL is not necessarily the URL of your post. It is the one specified in the Disqus javascript embedded in the post page:  </p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> disqus_config = <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.page.url = <span class="string">'a unique URL for each page where Disqus is present'</span>;</span><br><span class="line">    <span class="comment">// this.page.identifier = 'a unique identifier for each page where Disqus is present';</span></span><br><span class="line">    <span class="keyword">this</span>.page.title = <span class="string">'a unique title for each page where Disqus is present'</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>You will find this code in the post page if Disqus is enable on that. The URL of the post is specified by <code>this.page.url</code>.</p>
+<p>In order for the mapping to work, you also need to comment out the Disqus identifier. If it is specified in the new page, the identifier(or maybe along with the url?) will be used to search for the thread in the map. Unless the identifier is the same as the old one, the old thread will not show up in the new page. </p>
+<h3 id="Other-notes"><a href="#Other-notes" class="headerlink" title="Other notes"></a>Other notes</h3><ol>
+<li><p>New URL map entries will not override the previous ones unless the same key(old URL) exists in the original map. When you upload a new map, it is always the “append” operation that gets executed. </p>
+</li>
+<li><p>I failed to migrate the thread in <a href="http://eaglesky.github.io/blog/2014/03/25/my-first-blog-post/">http://eaglesky.github.io/blog/2014/03/25/my-first-blog-post/</a> to <a href="http://eaglesky.github.io/projects/index.html">http://eaglesky.github.io/projects/index.html</a> using the above approach. However from my other Disqus comments shown at the bottom of this page you can see the mapping is actually working correctly. I still couldn’t understand why it is not showing up in the new page. </p>
+</li>
+<li><p>Usually if you do things correctly you can see the thread showing up in the new page as expected very soon after you deploy your website. But it could take hours for the link at the bottom of the page to work. </p>
+</li>
+<li><p>Maybe we can just use the same Disqus identifier to do the migration? </p>
+</li>
+</ol>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>When migrating to a new blogging system, one important is to migrate the comments in the posts. If you use Disqus as the comment system, you can use one of the three migration tools they provide to do the job. You can find the three tools through Admin -&gt; Setup -&gt; Migration tools.<br>]]>
+    
+    </summary>
+    
+      <category term="Disqus" scheme="http://eaglesky.github.io/tags/Disqus/"/>
+    
+      <category term="Blog Building" scheme="http://eaglesky.github.io/categories/Blog-Building/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Color-Based Hand Gesture Recognition on Android]]></title>
+    <link href="http://eaglesky.github.io/2015/12/26/HandGestureRecognition/"/>
+    <id>http://eaglesky.github.io/2015/12/26/HandGestureRecognition/</id>
+    <published>2015-12-27T07:45:42.000Z</published>
+    <updated>2016-05-21T22:12:00.000Z</updated>
+    <content type="html"><![CDATA[<p>This is my course project for CS290I(Mobile Imaging) in UCSB. The goal is to detect and recognize user-defined gestures using the camera of Android phone. A demo Android app that lets the user launch other applications using gestures is developed to show the real time performance.<br><a id="more"></a></p>
+<h1 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h1><div class="figure center"><a class="fancybox" href="/images/posts/hand-gesture/workflow.jpg" title="Architecture for Hand Gesture Recognition on Android"><img class="fig-img" src="/images/posts/hand-gesture/workflow.jpg" style="width:500;height:310;" alt="Architecture for Hand Gesture Recognition on Android"></a><span class="caption">Architecture for Hand Gesture Recognition on Android</span></div>
+<h1 id="Presampling-and-Hand-Segmentation"><a href="#Presampling-and-Hand-Segmentation" class="headerlink" title="Presampling and Hand Segmentation"></a>Presampling and Hand Segmentation</h1><div class="figure left" style="width:380;"><a class="fancybox" href="/images/posts/hand-gesture/presampled-back.jpg" title=""><img class="fig-img" src="/images/posts/hand-gesture/presampled-back.jpg" style="width:380;" alt=""></a></div><div style="clear:both;"></div> 
+<div class="figure left" style="width:380;"><a class="fancybox" href="/images/posts/hand-gesture/presampled-hand.jpg" title=""><img class="fig-img" src="/images/posts/hand-gesture/presampled-hand.jpg" style="width:380;" alt=""></a></div><div style="clear:both;"></div>
+<p>The app starts with two pre-sampling steps, which collect colors of background and the user’s hand using 7 small squares displayed on the screen. These color data are used to compute the thresholds to get the binary image from the input RGBA data. For simplicity, adaptive method was not used to find the best threshold. Instead, the user is asked to put his hand close to the screen to cover the 7 squares so that the  program can get the color data of the hand. Note that the number of squares is just an empirical value and it can be other values. After the 7 color data for the hand are obtained ,7 upper and lower boundaries for the hand area are computed, which can be represented as a 6 dimensional vector. The bounding vector is determined by the developer and could not be changed. Therefore, the performance of the segmentation actually depends on the choice of the bounding vector. To better understand the influence of each element of the vector on the segmentation performance, the original RGB color space is converted to many other color spaces like HSV, YCrCb, CIE L*a*b*. Since for the same hand, the color usually varies most on the lighting dimension and smaller on hue and other color dimensions, the desirable color space should be able to separate them. After some experiments the three color spaces listed are all found to perform quite well, but it is easier to find the best bounding vector by using LAB space. Therefore the LAB color space is used.</p>
+<div class="figure center"><a class="fancybox" href="/images/posts/hand-gesture/thresholding-back.jpg" title=""><img class="fig-img" src="/images/posts/hand-gesture/thresholding-back.jpg" style="width:500;" alt=""></a></div><div style="clear:both;"></div>
+<p>After the boundaries for each of the 7 color data are obtained, 7 binary images of the hand can be computed, which are then summed up using logical operation “or”. The same thing are done on the background color, producing another binary image. The logical operation “and” is then done on the two binary images and the result is blurred, dilated and eroded to eliminate noises, and the final binary image is obtained, as is shown in the above picture.</p>
+<h1 id="Feature-Extraction"><a href="#Feature-Extraction" class="headerlink" title="Feature Extraction"></a>Feature Extraction</h1><div class="figure center"><a class="fancybox" href="/images/posts/hand-gesture/features.jpg" title="Illustration of the elements needed to calculate features. The green box represents the bounding box of the hand. The blue line represents the convex hull. The red line is the contour of the hand. The green dots between the fingers are defect points. The yellow circle is the inscribed circle and the black dot is the center of the circle, which is treated as the center of the palm. The dark green lines are finger vectors, and the order is indicted by the numbers"><img class="fig-img" src="/images/posts/hand-gesture/features.jpg" style="width:40%;" alt="Illustration of the elements needed to calculate features. The green box represents the bounding box of the hand. The blue line represents the convex hull. The red line is the contour of the hand. The green dots between the fingers are defect points. The yellow circle is the inscribed circle and the black dot is the center of the circle, which is treated as the center of the palm. The dark green lines are finger vectors, and the order is indicted by the numbers"></a><span class="caption">Illustration of the elements needed to calculate features. The green box represents the bounding box of the hand. The blue line represents the convex hull. The red line is the contour of the hand. The green dots between the fingers are defect points. The yellow circle is the inscribed circle and the black dot is the center of the circle, which is treated as the center of the palm. The dark green lines are finger vectors, and the order is indicted by the numbers</span></div><div style="clear:both;"></div>
+<p>The features used to represent the hand are low-level features, which essentially are the finger vectors. To compute them, it is necessary to find out the locations of the palm center and the fingertips. Some of the OpenCV functions can directly return the contour and convex hull points of the hand from a binary image containing the segmented hand. Using these coordinates and the bounding box, the center and radius of the inscribed circle of the contour can be computed. This part is quite computationally expensive and is implemented in native C++ code. </p>
+<div class="figure center"><a class="fancybox" href="/images/posts/hand-gesture/defects-elimination.jpg" title=""><img class="fig-img" src="/images/posts/hand-gesture/defects-elimination.jpg" style="width:400;" alt=""></a></div><div style="clear:both;"></div>
+<p>The locations of the fingertips are computed using the defect points. To do so, the redundant defect points are eliminated by checking constraints on the depth and angle of the defect points and so on, as is shown in the above picture. Next the defect points left are reordered and the finger tips are obtained from the returned coordinates of OpenCV functions. Finally the finger vectors are computed and divided by the radius of inscribe circle to get the final feature vector: $$X = [x_0 / r, y_0 / r, x_1 / r, y_1/r … x_4/r, y_4/r] $$.</p>
+<h1 id="Training-Set"><a href="#Training-Set" class="headerlink" title="Training Set"></a>Training Set</h1><div class="figure center"><a class="fancybox" href="/images/posts/hand-gesture/training-set.jpg" title=""><img class="fig-img" src="/images/posts/hand-gesture/training-set.jpg" style="width:500;" alt=""></a></div><div style="clear:both;"></div>
+<p>Currently 19 gestures have been collected to constitute the initial data set, as is shown in above figure. Note that although the extracted feature vector is invariant to different size of hand, it is variant to different orientations since gestures of different orientations are treated as different gestures. Also it can be seen from above figure that the “gesture” labeled as 0 is actually not a gesture. The label 0 is reserved to represent anything whose features are not detected. It can be counted as representing a negative example. It also reveals one of the limitations that the “fist” gesture can not be recognized. </p>
+<p>The user can add whatever gestures they like to the initial data set or build another one using the application. The training process can be conducted in any conditions as long as the hand can be well detected. Due to time constraint, very few number of frames are collected for each gesture(Only 10 frames). Multi-class SVM is used to build the training model and make predictions.</p>
+<h1 id="Results-and-Analysis"><a href="#Results-and-Analysis" class="headerlink" title="Results and Analysis"></a>Results and Analysis</h1><p>To show the results, several tests were conducted in different lighting conditions and different backgrounds. For each gesture, 3 frames were captured together with the predicted labels shown as the red numbers in the photos. Three frames are far less than enough to prove the accuracy. However according to observation, the final recognition result highly depends on the detection result. In other words, if the hand is well-detected, which means the extracted feature vector correctly represents the hand gesture, then the hand can be classified into the right category with high probability. Therefore what really matters is actually the performance of hand detection rather than that of hand recognition. The performance of hand detection can be seen from the pictures captured, which display elements like the contour and finger vectors. Three frames are enough to see if these elements are correct and if they are stable or not.</p>
+<div class="figure center"><a class="fancybox" href="/images/posts/hand-gesture/s1.jpg" title="Results in Scenario 1"><img class="fig-img" src="/images/posts/hand-gesture/s1.jpg" style="width:600;height:691;" alt="Results in Scenario 1"></a><span class="caption">Results in Scenario 1</span></div><div style="clear:both;"></div>
+<div class="figure center"><a class="fancybox" href="/images/posts/hand-gesture/s2.jpg" title="Results in Scenario 2"><img class="fig-img" src="/images/posts/hand-gesture/s2.jpg" style="width:600;height:691;" alt="Results in Scenario 2"></a><span class="caption">Results in Scenario 2</span></div><div style="clear:both;"></div>
+<div class="figure center"><a class="fancybox" href="/images/posts/hand-gesture/s3.jpg" title="Results in Scenario 3"><img class="fig-img" src="/images/posts/hand-gesture/s3.jpg" style="width:600;height:691;" alt="Results in Scenario 3"></a><span class="caption">Results in Scenario 3</span></div><div style="clear:both;"></div>
+<p>The app was tested in three scenarios and the results are shown in above figures. It can be seen that the app worked quite well in Scenario 1 and Scenario 3: all the predicted labels are correct and most of the gestures are detected correctly and quite stable, except that there is one gesture not detected(Random error). And the main reason for the success is that there are sharp contrast in color between the background and the hand. Whether the background is cluttered or not does not matter, only the color matters.</p>
+<p>In Scenario 2 some of the gestures are not well-detected. The main cause for this is that the yellow color in the background kind of interfere the extraction of contour of the hand. Also the auto adjustment of the camera becomes stronger in this scenario which is probably because of the light.</p>
+<p>In summary, with the help of presampled colors, the app can detect and recognize the hand quite well and stable in most of the lighting conditions and backgrounds, as long as the contrast of the background and the hand is not too poor. However the constraint is that they must keep the same once the presample processes finish. And that means both of the hand and the phone should not move too much, in order to avoid the change of the colors.</p>
+<h1 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h1><div class="video-container"><iframe src="//www.youtube.com/embed/PF6hY-0VuN4" frameborder="0" allowfullscreen></iframe></div>
+<h1 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h1><h2 id="Potential-Improvements"><a href="#Potential-Improvements" class="headerlink" title="Potential Improvements"></a>Potential Improvements</h2><ol>
+<li>Build statistical model for the color of background and hand instead of simple sampling and summing.</li>
+<li>Use adaptive thresholding to get the final binary image.</li>
+<li>Add elimination process of skin-like parts like wrist, forearm and face.</li>
+<li>Add feature representation for the “fist” gesture.</li>
+<li>Make prediction according to probability, rather than directly output the prediction frame by frame. </li>
+</ol>
+<h2 id="Limitations"><a href="#Limitations" class="headerlink" title="Limitations"></a>Limitations</h2><p>Two most evident drawbacks mentioned before are influences of change in background colors and lighting conditions. One thing I found is that the camera on the phone has auto-adjustment like auto-exposure and auto white balancing which change the color of the hand and background as the view or position of the hand changes. This makes color-based methods not desirable to be used on mobile phones. The only solution is either finding ways to disable the auto adjustment, which I think is not possible on most of the devices, or abandoning the methods and instead use hand detection methods based on texture-like features together with some machine learning methods.</p>
+<p>In addition, since low-level features are used to represent the gesture, some gestures can not be represented. Also it is hard to eliminate false-positives.</p>
+<p><a href="https://github.com/eaglesky/HandGestureApp" target="_blank" rel="external">Source Code</a></p>
+<h1 id="Acknowledgments"><a href="#Acknowledgments" class="headerlink" title="Acknowledgments"></a>Acknowledgments</h1><ol>
+<li>The idea of presampling is from Simen Andresen’s <a href="http://simena86.github.io/blog/2013/08/12/hand-tracking-and-recognition-with-opencv/" target="_blank" rel="external">blog</a> </li>
+<li>Used LibSVM on Android implemented by Kun Li. <a href="https://github.com/cnbuff410/Libsvm-androidjni" target="_blank" rel="external">link</a></li>
+<li>Used <a href="https://github.com/iPaulPro/aFileChooser" target="_blank" rel="external">aFileChooser library</a> to implement the file chooser.</li>
+<li>To implement mapping human gestures to Android apps, <a href="http://blog.csdn.net/qinjuning/article/details/6867806" target="_blank" rel="external">this article</a> is quite helpful.</li>
+</ol>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>This is my course project for CS290I(Mobile Imaging) in UCSB. The goal is to detect and recognize user-defined gestures using the camera of Android phone. A demo Android app that lets the user launch other applications using gestures is developed to show the real time performance.<br>]]>
+    
+    </summary>
+    
+      <category term="Android" scheme="http://eaglesky.github.io/tags/Android/"/>
+    
+      <category term="computer vision" scheme="http://eaglesky.github.io/tags/computer-vision/"/>
+    
+      <category term="machine learning" scheme="http://eaglesky.github.io/tags/machine-learning/"/>
+    
+      <category term="Computer Vision" scheme="http://eaglesky.github.io/categories/Computer-Vision/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[About Aligning Multiple Images on the Same Line in the TranquilPeak Theme of Hexo]]></title>
+    <link href="http://eaglesky.github.io/2015/12/26/TranquilPeakImageAlignment/"/>
+    <id>http://eaglesky.github.io/2015/12/26/TranquilPeakImageAlignment/</id>
+    <published>2015-12-26T21:07:37.000Z</published>
+    <updated>2016-05-21T23:04:03.000Z</updated>
+    <content type="html"><![CDATA[<p>How do we align multiple images on the same line in the TranquilPeak Hexo theme, especially when the images have different aspect ratio? Also how do we make sure that the aligment won’t be broken if the browser window is resized?<br><a id="more"></a></p>
+<p>TranquilPeak theme now supports fancy box using syntax like this:<br><figure class="highlight clojure"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="collection">&#123;% image <span class="collection">[classes]</span> /path/to/image <span class="collection">[/path/to/thumbnail]</span> <span class="collection">[width of thumbnail]</span> <span class="collection">[height of thumbnail]</span> <span class="collection">[title text]</span> %&#125;</span></span><br></pre></td></tr></table></figure></p>
+<p>Although we can fix the height value and compute the widths according to the aspect ratios, the size of the thumbnail images are fixed and the alignment will be broken if the browser window is resized. The solution I found is to use the fig percentages in the classes argument. </p>
+<figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"></span><span class="expression">&#123;% <span class="variable">image</span> <span class="variable">fancybox</span> <span class="variable">fig-</span>25 <span class="end-block">/images</span><span class="end-block">/projects</span><span class="end-block">/skeletonplayer.jpg </span><span class="string">"Action Player"</span> %&#125;</span><span class="xml"></span><br><span class="line"></span><span class="expression">&#123;% <span class="variable">image</span> <span class="variable">fancybox</span> <span class="variable">fig-</span>75 <span class="end-block">/images</span><span class="end-block">/projects</span><span class="end-block">/push.png </span>82% <span class="string">"Real Time Recognition"</span> %&#125;</span><span class="xml"></span></span><br></pre></td></tr></table></figure>
+<p>The sizes of two images are 535x694 and 1316x685 (width x height). Without the ‘82%’ the result looks like this:</p>
+<div class="figure fig-25"><a class="fancybox" href="/images/projects/skeletonplayer.jpg" title="Action Player"><img class="fig-img" src="/images/projects/skeletonplayer.jpg" alt="Action Player"></a><span class="caption">Action Player</span></div>
+<div class="figure fig-75"><a class="fancybox" href="/images/projects/push.png" title="Real Time Recognition"><img class="fig-img" src="/images/projects/push.png" alt="Real Time Recognition"></a><span class="caption">Real Time Recognition</span></div>
+<p>It doesn’t look pretty since the heights do not match. We can shrink the right image to be 82%($ =694\times 1316 / 685 / (535\times 3)$) of the original size. And the result is:</p>
+<div class="figure fig-25"><a class="fancybox" href="/images/projects/skeletonplayer.jpg" title="Action Player"><img class="fig-img" src="/images/projects/skeletonplayer.jpg" alt="Action Player"></a><span class="caption">Action Player</span></div>
+<div class="figure fig-75"><a class="fancybox" href="/images/projects/push.png" title="Real Time Recognition"><img class="fig-img" src="/images/projects/push.png" style="width:82%;" alt="Real Time Recognition"></a><span class="caption">Real Time Recognition</span></div>
+<p>This is how I align multiple images of different aspect ratios on the same line. As you can see you need to do a little math in order to get it work. Not sure if there is a simpler way of doing it using the existing syntax.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>How do we align multiple images on the same line in the TranquilPeak Hexo theme, especially when the images have different aspect ratio? Also how do we make sure that the aligment won’t be broken if the browser window is resized?<br>]]>
+    
+    </summary>
+    
+      <category term="Hexo" scheme="http://eaglesky.github.io/tags/Hexo/"/>
+    
+      <category term="TranquilPeak theme" scheme="http://eaglesky.github.io/tags/TranquilPeak-theme/"/>
+    
+      <category term="Hexo" scheme="http://eaglesky.github.io/categories/Hexo/"/>
+    
+      <category term="TranquilPeak Theme" scheme="http://eaglesky.github.io/categories/Hexo/TranquilPeak-Theme/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Readme File of Hexo Theme Tranquilpeak 1.2.0]]></title>
+    <link href="http://eaglesky.github.io/2015/07/22/theme-readme/"/>
+    <id>http://eaglesky.github.io/2015/07/22/theme-readme/</id>
+    <published>2015-07-23T00:22:55.000Z</published>
+    <updated>2016-05-21T23:04:03.000Z</updated>
+    <content type="html"><![CDATA[<p>Yet another test on different elements of a markdown file.<br><a id="more"></a></p>
+<h1 id="Tranquilpeak-Hexo-theme"><a href="#Tranquilpeak-Hexo-theme" class="headerlink" title="Tranquilpeak Hexo theme"></a>Tranquilpeak Hexo theme</h1><p>A gorgeous responsive theme for Hexo blog framework </p>
+<p><img src="http://louisbarranqueiro.github.io/tranquilpeak-hexo-theme/2015/06/15/Welcome-to-the-new-Tranquilpeak/tranquilpeak.png" alt="Tranquilpeak"></p>
+<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><ul>
+<li><a href="#general">General</a></li>
+<li><a href="#features">Features</a></li>
+<li><a href="#quick-start">Quick start</a></li>
+<li><a href="#demo">Demo</a></li>
+<li><a href="#showcase">Showcase</a></li>
+<li><a href="#documentation">Documentation</a><ul>
+<li><a href="#for-users">For users</a></li>
+<li><a href="#for-developers">For developers</a></li>
+</ul>
+</li>
+<li><a href="#contributing">Contributing</a></li>
+<li><a href="#license">License</a></li>
+</ul>
+<h2 id="General"><a href="#General" class="headerlink" title="General"></a>General</h2><ul>
+<li><strong>Author</strong> : Louis Barranqueiro</li>
+<li><strong>Version</strong> : 1.2.0  </li>
+<li><strong>Compatibility</strong> : Hexo 3.0.x</li>
+</ul>
+<h2 id="Features"><a href="#Features" class="headerlink" title="Features"></a>Features</h2><p><strong>General features :</strong>  </p>
+<ul>
+<li>Fully responsive  </li>
+<li>Optimized for tablets &amp; mobiles  </li>
+<li>Configurable menu of the sidebar  </li>
+<li>Pages to filter tags, categories and archives  </li>
+<li>Background cover image  </li>
+<li>Beautiful about page  </li>
+<li>Support Open Graph protocol  </li>
+</ul>
+<p><strong>Posts features :</strong>  </p>
+<ul>
+<li>Thumbnail image  </li>
+<li>Cover image  </li>
+<li>Responsive videos &amp; images  </li>
+<li>Sharing options  </li>
+<li>Navigation menu  </li>
+<li>GitHub theme for code highlighting  </li>
+<li>Image gallery  </li>
+<li>Table of contents  </li>
+</ul>
+<p><strong>Integrated services :</strong>  </p>
+<ul>
+<li>Disqus  </li>
+<li>Google analytics  </li>
+<li>Gravatar  </li>
+<li>Swiftype  </li>
+<li>Facebook Insights  </li>
+</ul>
+<h2 id="Quick-start"><a href="#Quick-start" class="headerlink" title="Quick start"></a>Quick start</h2><h5 id="For-people-who-want-to-use-the-original-version-of-Tranquilpeak-users"><a href="#For-people-who-want-to-use-the-original-version-of-Tranquilpeak-users" class="headerlink" title="For people who want to use the original version of Tranquilpeak (users)"></a>For people who want to use the original version of Tranquilpeak (users)</h5><ol>
+<li>Download the latest version ready for production utilisation here : <a href="https://github.com/LouisBarranqueiro/tranquilpeak-hexo-theme/releases/download/v1.2.0/tranquilpeak-hexo-theme-built-for-production-1.2.0.zip" target="_blank" rel="external">tranquilpeak-hexo-theme-built-for-production-1.2.0</a> or choose an other version here : <a href="https://github.com/LouisBarranqueiro/tranquilpeak-hexo-theme/releases" target="_blank" rel="external">all releases</a>  </li>
+<li>Follow <a href="https://github.com/LouisBarranqueiro/tranquilpeak-hexo-theme/blob/master/docs/user.md" target="_blank" rel="external">user documentation</a> to install and configure the theme  </li>
+</ol>
+<h5 id="For-people-who-want-to-create-their-own-version-of-tranquilpeak-developers"><a href="#For-people-who-want-to-create-their-own-version-of-tranquilpeak-developers" class="headerlink" title="For people who want to create their own version of tranquilpeak (developers)"></a>For people who want to create their own version of tranquilpeak (developers)</h5><ol>
+<li>Run <code>git clone https://github.com/LouisBarranqueiro/tranquilpeak-hexo-theme.git</code>  </li>
+<li>Follow <a href="https://github.com/LouisBarranqueiro/tranquilpeak-hexo-theme/blob/master/docs/developer.md" target="_blank" rel="external">developer documentation</a> to edit and build the theme  </li>
+</ol>
+<h2 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h2><p>Check out Tranquilpeak theme in live  : <a href="http://louisbarranqueiro.github.io/tranquilpeak-hexo-theme" target="_blank" rel="external">Tranquilpeak-hexo-theme demo</a></p>
+<h2 id="Showcase"><a href="#Showcase" class="headerlink" title="Showcase"></a>Showcase</h2><p>I would like to create a showcase with all blogs having a customized version of tranquilpeak theme.<br>If you have customized the original version, please, add your blog into.</p>
+<h5 id="Via-an-issue"><a href="#Via-an-issue" class="headerlink" title="Via an issue"></a>Via an issue</h5><ol>
+<li>Create an issue with your blog url and a short description of your changes by clicking <a href="https://github.com/LouisBarranqueiro/tranquilpeak-hexo-theme/issues/new?title=Add%20my%20blog%20into%20showcase&amp;body=Hey,%20check%20out%20my%20custom%20version%20of%20Tranquilpeak%20:%0D%0A*%20URL%20:%20%0D%0A*%20Changes%20(short%20description" target="_blank" rel="external">here</a>%20:%20)  </li>
+</ol>
+<h5 id="Via-a-pull-request"><a href="#Via-a-pull-request" class="headerlink" title="Via a pull request"></a>Via a pull request</h5><ol>
+<li>Fork the project  </li>
+<li>On the master branch, add your blog URL, a short description of your changes and your github name into <code>SHOWCASE.md</code> file  </li>
+<li>Respect the format : <code>[url_of_your_blog](url_of_your_blog) - short_description_of_your_changes - [github_name](url_of_your_github_page)</code>  </li>
+<li>Create a pull request on the master branch   </li>
+</ol>
+<p>I will judge if the theme is enough customized to be added into showcase.</p>
+<h2 id="Documentation"><a href="#Documentation" class="headerlink" title="Documentation"></a>Documentation</h2><p>If it’s your first time using Hexo, please check <a href="https://hexo.io/docs/" target="_blank" rel="external">Hexo official documentation</a></p>
+<h5 id="For-users"><a href="#For-users" class="headerlink" title="For users"></a>For users</h5><p>To install and configure the theme, consult the following documentation : <a href="https://github.com/LouisBarranqueiro/tranquilpeak-hexo-theme/blob/master/docs/user.md" target="_blank" rel="external">user documentation</a>  </p>
+<h5 id="For-developers"><a href="#For-developers" class="headerlink" title="For developers"></a>For developers</h5><p>To understand better the code and edit  the theme, consult the following documentation : <a href="https://github.com/LouisBarranqueiro/tranquilpeak-hexo-theme/blob/master/docs/developer.md" target="_blank" rel="external">developer documentation</a></p>
+<h2 id="Contributing"><a href="#Contributing" class="headerlink" title="Contributing"></a>Contributing</h2><p><a href="https://gitter.im/LouisBarranqueiro/tranquilpeak-hexo-theme?utm_source=badge&amp;utm_medium=badge&amp;utm_campaign=pr-badge&amp;utm_content=badge" target="_blank" rel="external"><img src="https://badges.gitter.im/Join%20Chat.svg" alt="Join the chat at https://gitter.im/LouisBarranqueiro/tranquilpeak-hexo-theme"></a></p>
+<p>All kinds of contributions (enhancements, new features, documentation &amp; code improvements, issues &amp; bugs reporting) are welcome.</p>
+<p>All pull requests must be done on the <code>dev</code> branch.</p>
+<h2 id="License"><a href="#License" class="headerlink" title="License"></a>License</h2><p>Tranquilpeak-hexo-theme is released under the terms of the <a href="https://github.com/LouisBarranqueiro/tranquilpeak-hexo-theme/blob/master/LICENSE" target="_blank" rel="external">GNU General Public License v3.0</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>Yet another test on different elements of a markdown file.<br>]]>
+    
+    </summary>
+    
+      <category term="Tests" scheme="http://eaglesky.github.io/categories/Tests/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Elements Showcase]]></title>
+    <link href="http://eaglesky.github.io/2015/07/21/elements-showcase/"/>
+    <id>http://eaglesky.github.io/2015/07/21/elements-showcase/</id>
+    <published>2015-07-22T04:28:34.000Z</published>
+    <updated>2016-05-21T22:12:00.000Z</updated>
+    <content type="html"><![CDATA[<p>Check out how Tranquilpeak theme display well HTML elements (title, paragraph, blockquote, table and more..). It’s simple and elegant.<br><a id="more"></a></p>
+<h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p><strong>Mou</strong>, the missing Markdown editor for <em>web developers</em>.</p>
+<h3 id="Syntax"><a href="#Syntax" class="headerlink" title="Syntax"></a>Syntax</h3><h4 id="Strong-and-Emphasize"><a href="#Strong-and-Emphasize" class="headerlink" title="Strong and Emphasize"></a>Strong and Emphasize</h4><p><strong>strong</strong> or <strong>strong</strong> ( Cmd + B )</p>
+<p><em>emphasize</em> or <em>emphasize</em> ( Cmd + I )</p>
+<p><strong>Sometimes I want a lot of text to be bold.<br>Like, seriously, a <em>LOT</em> of text</strong></p>
+<h4 id="Blockquotes"><a href="#Blockquotes" class="headerlink" title="Blockquotes"></a>Blockquotes</h4><blockquote>
+<p>Right angle brackets &gt; are used for block quotes.</p>
+</blockquote>
+<h4 id="Links-and-Email"><a href="#Links-and-Email" class="headerlink" title="Links and Email"></a>Links and Email</h4><p>An email <a href="&#x6d;&#97;&#105;&#108;&#116;&#x6f;&#58;&#101;&#120;&#x61;&#x6d;&#112;&#108;&#x65;&#x40;&#x65;&#120;&#97;&#109;&#112;&#x6c;&#101;&#x2e;&#x63;&#x6f;&#109;">&#101;&#120;&#x61;&#x6d;&#112;&#108;&#x65;&#x40;&#x65;&#120;&#97;&#109;&#112;&#x6c;&#101;&#x2e;&#x63;&#x6f;&#109;</a> link.</p>
+<p>Simple inline link <a href="http://chenluois.com" target="_blank" rel="external">http://chenluois.com</a>, another inline link <a href="http://smallerapp.com" target="_blank" rel="external">Smaller</a>, one more inline link with title <a href="http://resizesafari.com" title="a Safari extension" target="_blank" rel="external">Resize</a>.</p>
+<p>A <a href="http://mouapp.com" title="Markdown editor on Mac OS X" target="_blank" rel="external">reference style</a> link. Input id, then anywhere in the doc, define the link with corresponding id:</p>
+<p>Titles ( or called tool tips ) in the links are optional.</p>
+<h4 id="Images"><a href="#Images" class="headerlink" title="Images"></a>Images</h4><p>An inline image <img src="http://smallerapp.com/favicon.ico" alt="Smaller icon" title="Title here">, title is optional.</p>
+<p>A <img src="http://resizesafari.com/favicon.ico" alt="Resize icon" title="Title"> reference style image.</p>
+<h4 id="Inline-code-and-Block-code"><a href="#Inline-code-and-Block-code" class="headerlink" title="Inline code and Block code"></a>Inline code and Block code</h4><p>Inline code are surround by <code>backtick; c++</code> key. To create a block code:</p>
+<p>  Indent each line by at least 1 tab, or 4 spaces.<br>    var Mou = exactlyTheAppIwant;</p>
+<h4 id="Ordered-Lists"><a href="#Ordered-Lists" class="headerlink" title="Ordered Lists"></a>Ordered Lists</h4><p>Ordered lists are created using “1.” + Space:</p>
+<ol>
+<li>Ordered list item</li>
+<li>Ordered list item</li>
+<li>Ordered list item</li>
+</ol>
+<h4 id="Unordered-Lists"><a href="#Unordered-Lists" class="headerlink" title="Unordered Lists"></a>Unordered Lists</h4><p>Unordered list are created using “*” + Space:</p>
+<ul>
+<li>Unordered list item</li>
+<li>Unordered list item</li>
+<li>Unordered list item</li>
+</ul>
+<p>Or using “-“ + Space:</p>
+<ul>
+<li>Unordered list item</li>
+<li>Unordered list item</li>
+<li>Unordered list item</li>
+</ul>
+<h4 id="Hard-Linebreak"><a href="#Hard-Linebreak" class="headerlink" title="Hard Linebreak"></a>Hard Linebreak</h4><p>End a line with two or more spaces will create a hard linebreak, called <code>&lt;br /&gt;</code> in HTML. ( Control + Return )<br>Above line ended with 2 spaces.</p>
+<h4 id="Horizontal-Rules"><a href="#Horizontal-Rules" class="headerlink" title="Horizontal Rules"></a>Horizontal Rules</h4><p>Three or more asterisks or dashes:</p>
+<hr>
+<hr>
+<hr>
+<h4 id="Headers"><a href="#Headers" class="headerlink" title="Headers"></a>Headers</h4><p>Setext-style:</p>
+<h1 id="This-is-H1"><a href="#This-is-H1" class="headerlink" title="This is H1"></a>This is H1</h1><h2 id="This-is-H2"><a href="#This-is-H2" class="headerlink" title="This is H2"></a>This is H2</h2><p>atx-style:</p>
+<h1 id="This-is-H1-1"><a href="#This-is-H1-1" class="headerlink" title="This is H1"></a>This is H1</h1><h2 id="This-is-H2-1"><a href="#This-is-H2-1" class="headerlink" title="This is H2"></a>This is H2</h2><h3 id="This-is-H3"><a href="#This-is-H3" class="headerlink" title="This is H3"></a>This is H3</h3><h4 id="This-is-H4"><a href="#This-is-H4" class="headerlink" title="This is H4"></a>This is H4</h4><h5 id="This-is-H5"><a href="#This-is-H5" class="headerlink" title="This is H5"></a>This is H5</h5><h6 id="This-is-H6"><a href="#This-is-H6" class="headerlink" title="This is H6"></a>This is H6</h6><h3 id="Extra-Syntax"><a href="#Extra-Syntax" class="headerlink" title="Extra Syntax"></a>Extra Syntax</h3><h4 id="Footnotes"><a href="#Footnotes" class="headerlink" title="Footnotes"></a>Footnotes</h4><p>Footnotes work mostly like reference-style links. A footnote is made of two things: a marker in the text that will become a superscript number; a footnote definition that will be placed in a list of footnotes at the end of the document. A footnote looks like this:</p>
+<p>That’s some text with a footnote.[^1]</p>
+<p>[^1]: And that’s the footnote.</p>
+<h4 id="Strikethrough"><a href="#Strikethrough" class="headerlink" title="Strikethrough"></a>Strikethrough</h4><p>Wrap with 2 tilde characters:</p>
+<p><del>Strikethrough</del></p>
+<h4 id="Fenced-Code-Blocks"><a href="#Fenced-Code-Blocks" class="headerlink" title="Fenced Code Blocks"></a>Fenced Code Blocks</h4><p>Start with a line containing 3 or more backticks, and ends with the first line with the same number of backticks:</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">Fenced</span> <span class="preprocessor">code</span> <span class="keyword">blocks </span>are like Stardard <span class="keyword">Markdown’s </span>regular <span class="preprocessor">code</span></span><br><span class="line"><span class="keyword">blocks, </span>except that they’re not indented <span class="keyword">and </span>instead rely on</span><br><span class="line">a start <span class="keyword">and </span><span class="preprocessor">end</span> fence lines to delimit the <span class="preprocessor">code</span> <span class="keyword">block.</span></span><br></pre></td></tr></table></figure>
+<h4 id="Tables"><a href="#Tables" class="headerlink" title="Tables"></a>Tables</h4><p>A simple table looks like this:</p>
+<table>
+<thead>
+<tr>
+<th>First Header</th>
+<th>Second Header</th>
+<th>Third Header</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Content Cell</td>
+<td>Content Cell</td>
+<td>Content Cell</td>
+</tr>
+<tr>
+<td>Content Cell</td>
+<td>Content Cell</td>
+<td>Content Cell</td>
+</tr>
+</tbody>
+</table>
+<p>If you wish, you can add a leading and tailing pipe to each line of the table:</p>
+<table>
+<thead>
+<tr>
+<th>First Header</th>
+<th>Second Header</th>
+<th>Third Header</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Content Cell</td>
+<td>Content Cell</td>
+<td>Content Cell</td>
+</tr>
+<tr>
+<td>Content Cell</td>
+<td>Content Cell</td>
+<td>Content Cell</td>
+</tr>
+</tbody>
+</table>
+<p>Specify alignement for each column by adding colons to separator lines:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">First Header</th>
+<th style="text-align:center">Second Header</th>
+<th style="text-align:right">Third Header</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Left</td>
+<td style="text-align:center">Center</td>
+<td style="text-align:right">Right</td>
+</tr>
+<tr>
+<td style="text-align:left">Left</td>
+<td style="text-align:center">Center</td>
+<td style="text-align:right">Right</td>
+</tr>
+</tbody>
+</table>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>Check out how Tranquilpeak theme display well HTML elements (title, paragraph, blockquote, table and more..). It’s simple and elegant.<br>]]>
+    
+    </summary>
+    
+      <category term="Tests" scheme="http://eaglesky.github.io/categories/Tests/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Hello World]]></title>
+    <link href="http://eaglesky.github.io/2015/07/17/HelloWorld/"/>
+    <id>http://eaglesky.github.io/2015/07/17/HelloWorld/</id>
+    <published>2015-07-18T01:30:02.000Z</published>
+    <updated>2016-05-21T22:12:00.000Z</updated>
+    <content type="html"><![CDATA[<p>A hello world test.<br><a id="more"></a></p>
+<h1 id="Hello-World"><a href="#Hello-World" class="headerlink" title="Hello World!"></a>Hello World!</h1><p>Testing inserting an image in the post: </p>
+<div class="figure " style="width:;"><a class="fancybox" href="robot.jpg" title="A Robot"><img class="fig-img" src="robot.jpg" alt="A Robot"></a><span class="caption">A Robot</span></div>
+<p>Seems that asset folder only works for posts!!<br><div class="figure " style="width:400px;"><a class="fancybox" href="linkedin.jpg" title=""><img class="fig-img" src="linkedin.jpg" style="width:400px;" alt=""></a></div></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>A hello world test.<br>]]>
+    
+    </summary>
+    
+      <category term="Tests" scheme="http://eaglesky.github.io/categories/Tests/"/>
+    
+  </entry>
+  
+</feed>

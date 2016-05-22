@@ -1,0 +1,1267 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Eaglesky&#39;s Blog">
+    <title> - Eaglesky&#39;s Blog</title>
+    <meta name="author" content="Yalun Qin">
+    
+    
+        <link rel="icon" href="https://farm6.staticflickr.com/5796/24064690136_786618ac9c_m.jpg">
+    
+    
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+    
+    <meta name="description" content="&amp;lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&amp;gt;
+
+
+
+
+ARLK: ANNkd_tree Class Reference
+
+
+
+
+
+
+  $(document).ready(function() { se">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="Eaglesky's Blog">
+<meta property="og:url" content="http://eaglesky.github.io/ARLK_html/class_a_n_nkd__tree.html">
+<meta property="og:site_name" content="Eaglesky's Blog">
+<meta property="og:description" content="&amp;lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&amp;gt;
+
+
+
+
+ARLK: ANNkd_tree Class Reference
+
+
+
+
+
+
+  $(document).ready(function() { se">
+<meta property="og:image" content="http://eaglesky.github.io/search/mag_sel.png">
+<meta property="og:image" content="http://eaglesky.github.io/search/close.png">
+<meta property="og:image" content="http://eaglesky.github.io/class_a_n_nkd__tree.png">
+<meta property="og:image" content="http://eaglesky.github.io/closed.png">
+<meta property="og:image" content="http://eaglesky.github.io/doxygen.png">
+<meta property="og:updated_time" content="2016-05-21T22:12:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Eaglesky's Blog">
+<meta name="twitter:description" content="&amp;lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&amp;gt;
+
+
+
+
+ARLK: ANNkd_tree Class Reference
+
+
+
+
+
+
+  $(document).ready(function() { se">
+    
+    
+        
+    
+    
+        <meta property="og:image" content="http://www.gravatar.com/avatar/7e85ef7ac7d7263b525e55e4408151a4?s=640"/>
+    
+    
+    
+    
+    <!--STYLES-->
+    <link rel="stylesheet" href="/assets/css/font-awesome.css" type="text/css">
+    <link rel="stylesheet" href="/assets/css/jquery.fancybox.css" type="text/css">
+    <link rel="stylesheet" href="/assets/css/jquery.fancybox-thumbs.css" type="text/css">
+    <link rel="stylesheet" href="/assets/css/tranquilpeak.css" type="text/css">
+    <!--STYLES END-->
+    
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-49504412-1']);
+        _gaq.push(['_trackPageview']);
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+        
+    
+
+<header id="header" data-behavior="1">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <h1 class="header-title">
+        <a class="header-title-link" href="/ ">Eaglesky&#39;s Blog</a>
+    </h1>
+    
+        
+            <a  class="header-right-picture "
+                href="/#about">
+        
+        
+            <img class="header-picture" src="http://www.gravatar.com/avatar/7e85ef7ac7d7263b525e55e4408151a4?s=90"/>
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+    
+
+<nav id="sidebar" data-behavior="1">
+    
+        <div class="sidebar-profile">
+            <a href="/#about">
+                    <img class="sidebar-profile-picture" src="http://www.gravatar.com/avatar/7e85ef7ac7d7263b525e55e4408151a4?s=110"/>
+            </a>
+            <span class="sidebar-profile-name">Yalun Qin</span>
+        </div>
+    
+    
+        <ul class="sidebar-buttons">
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/ "
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+                    <span class="sidebar-button-desc">Home</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/#about"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+                    <span class="sidebar-button-desc">About</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/projects"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-picture-o"></i>
+                    <span class="sidebar-button-desc">Projects</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/all-archives"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+                    <span class="sidebar-button-desc">Archives</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/all-categories"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+                    <span class="sidebar-button-desc">Categories</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/all-tags"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+                    <span class="sidebar-button-desc">Tags</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link st-search-show-outputs"
+                         href="/#search"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-search"></i>
+                    <span class="sidebar-button-desc">Search</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+        <ul class="sidebar-buttons">
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link " href="https://github.com/eaglesky" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+                    <span class="sidebar-button-desc">GitHub</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link " href="https://www.linkedin.com/in/yalunqin" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-linkedin"></i>
+                    <span class="sidebar-button-desc">LinkedIn</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/atom.xml"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+                    <span class="sidebar-button-desc">RSS</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+</nav>
+
+            
+            <div id="main" data-behavior="1"
+                 class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post" itemscope itemType="http://schema.org/BlogPosting">
+    
+    
+        <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title" itemprop="headline">
+            (no title)
+        </h1>
+    
+    <div class="post-meta">
+    <time itemprop="datePublished" content="Sat May 21 2016 15:12:00 GMT-0700">
+	
+		    May 21, 2016
+    	
+    </time>
+    
+</div>
+</div>
+    
+    <div class="post-content markdown" itemprop="articleBody">
+        <div class="main-content-wrap">
+            <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=9">
+<title>ARLK: ANNkd_tree Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">ARLK
+   &#160;<span id="projectnumber">0.1.0</span>
+   </div>
+   <div id="projectbrief">Action Recognition Library for Kinect</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.8.2 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
+      <li><a href="files.html"><span>Files</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()" alt="">
+          <input type="text" id="MSearchField" value="Search" accesskey="S" onfocus="searchBox.OnSearchFieldFocus(true)" onblur="searchBox.OnSearchFieldFocus(false)" onkeyup="searchBox.OnSearchFieldChange(event)">
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()" target="_blank" rel="external"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
+      <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
+      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
+    </ul>
+  </div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()" onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)" target="_blank" rel="external"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)" target="_blank" rel="external"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)" target="_blank" rel="external"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)" target="_blank" rel="external"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)" target="_blank" rel="external"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)" target="_blank" rel="external"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)" target="_blank" rel="external"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)" target="_blank" rel="external"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)" target="_blank" rel="external"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)" target="_blank" rel="external"><span class="SelectionMark">&#160;</span>Macros</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pro-methods">Protected Member Functions</a> &#124;
+<a href="#pro-attribs">Protected Attributes</a> &#124;
+<a href="class_a_n_nkd__tree-members.html">List of all members</a>  </div>
+  <div class="headertitle">
+<div class="title">ANNkd_tree Class Reference</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_a_n_n_8h_source.html">ANN.h</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for ANNkd_tree:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="class_a_n_nkd__tree.png" usemap="#ANNkd_tree_map" alt="">
+  <map id="ANNkd_tree_map" name="ANNkd_tree_map">
+<area href="class_a_n_npoint_set.html" alt="ANNpointSet" shape="rect" coords="0,0,84,24">
+<area href="class_a_n_nbd__tree.html" alt="ANNbd_tree" shape="rect" coords="0,112,84,136">
+</map>
+ </div></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a554ac3f6c790dfa2268008580bcb9734"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_n_nkd__tree.html#a554ac3f6c790dfa2268008580bcb9734">ANNkd_tree</a> (int n=0, int dd=0, int bs=1)</td></tr>
+<tr class="separator:a554ac3f6c790dfa2268008580bcb9734"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee9529e128732f61702c5b22f8090a9a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_n_nkd__tree.html#aee9529e128732f61702c5b22f8090a9a">ANNkd_tree</a> (<a class="el" href="_a_n_n_8h.html#a402299ac00a81ad80f09a0eb84ba4059">ANNpointArray</a> pa, int n, int dd, int bs=1, <a class="el" href="_a_n_n_8h.html#a229eef95deefadc9d3fa738683c9c2bb">ANNsplitRule</a> split=<a class="el" href="_a_n_n_8h.html#a229eef95deefadc9d3fa738683c9c2bba9998b60fada03ec8867d9ee448ac4ea7">ANN_KD_SUGGEST</a>)</td></tr>
+<tr class="separator:aee9529e128732f61702c5b22f8090a9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a132d8b31ff7b223555d54a2db28d8861"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_n_nkd__tree.html#a132d8b31ff7b223555d54a2db28d8861">ANNkd_tree</a> (std::istream &amp;in)</td></tr>
+<tr class="separator:a132d8b31ff7b223555d54a2db28d8861"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f6d39d75e2df3682035503d6f318d82"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_n_nkd__tree.html#a0f6d39d75e2df3682035503d6f318d82">~ANNkd_tree</a> ()</td></tr>
+<tr class="separator:a0f6d39d75e2df3682035503d6f318d82"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2a0fa2889c23a34773dc054c7769b3c6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_n_nkd__tree.html#a2a0fa2889c23a34773dc054c7769b3c6">annkSearch</a> (<a class="el" href="_a_n_n_8h.html#ad85f4b5cb9cf5877a2094bf8582133f5">ANNpoint</a> q, int k, <a class="el" href="_a_n_n_8h.html#a6cc54f9929727736423d719870cf1a5b">ANNidxArray</a> nn_idx, <a class="el" href="_a_n_n_8h.html#ae3a038f02621d79c1efd5f8fb2ee968e">ANNdistArray</a> dd, double eps=0.0)</td></tr>
+<tr class="separator:a2a0fa2889c23a34773dc054c7769b3c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a30304ca338faa9e6c61b10dd7ee940"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_n_nkd__tree.html#a5a30304ca338faa9e6c61b10dd7ee940">annkPriSearch</a> (<a class="el" href="_a_n_n_8h.html#ad85f4b5cb9cf5877a2094bf8582133f5">ANNpoint</a> q, int k, <a class="el" href="_a_n_n_8h.html#a6cc54f9929727736423d719870cf1a5b">ANNidxArray</a> nn_idx, <a class="el" href="_a_n_n_8h.html#ae3a038f02621d79c1efd5f8fb2ee968e">ANNdistArray</a> dd, double eps=0.0)</td></tr>
+<tr class="separator:a5a30304ca338faa9e6c61b10dd7ee940"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f98ea5b23ad8957fbea661014d25889"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_n_nkd__tree.html#a9f98ea5b23ad8957fbea661014d25889">annkFRSearch</a> (<a class="el" href="_a_n_n_8h.html#ad85f4b5cb9cf5877a2094bf8582133f5">ANNpoint</a> q, <a class="el" href="_a_n_n_8h.html#ab2a7296707a2205201daccfc1929c3ca">ANNdist</a> sqRad, int k, <a class="el" href="_a_n_n_8h.html#a6cc54f9929727736423d719870cf1a5b">ANNidxArray</a> nn_idx=NULL, <a class="el" href="_a_n_n_8h.html#ae3a038f02621d79c1efd5f8fb2ee968e">ANNdistArray</a> dd=NULL, double eps=0.0)</td></tr>
+<tr class="separator:a9f98ea5b23ad8957fbea661014d25889"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a200c6e8c2d9ea1d9afbdec893c41edb2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_n_nkd__tree.html#a200c6e8c2d9ea1d9afbdec893c41edb2">theDim</a> ()</td></tr>
+<tr class="separator:a200c6e8c2d9ea1d9afbdec893c41edb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7acce8e5f6bbbe1e3c9e7f503e70d19d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_n_nkd__tree.html#a7acce8e5f6bbbe1e3c9e7f503e70d19d">nPoints</a> ()</td></tr>
+<tr class="separator:a7acce8e5f6bbbe1e3c9e7f503e70d19d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a927be6420bd73db85ad8e356b462ec1b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_a_n_n_8h.html#a402299ac00a81ad80f09a0eb84ba4059">ANNpointArray</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_n_nkd__tree.html#a927be6420bd73db85ad8e356b462ec1b">thePoints</a> ()</td></tr>
+<tr class="separator:a927be6420bd73db85ad8e356b462ec1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae601d3d51d0458c35089711495d92fb5"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_n_nkd__tree.html#ae601d3d51d0458c35089711495d92fb5">Print</a> (<a class="el" href="_a_n_n_8h.html#ae5927710e8251aa54f5b820eca160f2c">ANNbool</a> with_pts, std::ostream &amp;out)</td></tr>
+<tr class="separator:ae601d3d51d0458c35089711495d92fb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a85441f0c34490f4f629ac097d3d69421"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_n_nkd__tree.html#a85441f0c34490f4f629ac097d3d69421">Dump</a> (<a class="el" href="_a_n_n_8h.html#ae5927710e8251aa54f5b820eca160f2c">ANNbool</a> with_pts, std::ostream &amp;out)</td></tr>
+<tr class="separator:a85441f0c34490f4f629ac097d3d69421"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a073683890da921475a7de34af6f2c684"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_n_nkd__tree.html#a073683890da921475a7de34af6f2c684">getStats</a> (<a class="el" href="class_a_n_nkd_stats.html">ANNkdStats</a> &amp;st)</td></tr>
+<tr class="separator:a073683890da921475a7de34af6f2c684"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_class_a_n_npoint_set"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_a_n_npoint_set')"><img src="closed.png" alt="-">&#160;Public Member Functions inherited from <a class="el" href="class_a_n_npoint_set.html">ANNpointSet</a></td></tr>
+<tr class="memitem:a22d90676e746e4d4d45215a879068d03 inherit pub_methods_class_a_n_npoint_set"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_n_npoint_set.html#a22d90676e746e4d4d45215a879068d03">~ANNpointSet</a> ()</td></tr>
+<tr class="separator:a22d90676e746e4d4d45215a879068d03 inherit pub_methods_class_a_n_npoint_set"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr class="memitem:af531a6a84d19b64a74fabb718e9c12f0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_n_nkd__tree.html#af531a6a84d19b64a74fabb718e9c12f0">SkeletonTree</a> (int n, int dd, int bs, <a class="el" href="_a_n_n_8h.html#a402299ac00a81ad80f09a0eb84ba4059">ANNpointArray</a> pa=NULL, <a class="el" href="_a_n_n_8h.html#a6cc54f9929727736423d719870cf1a5b">ANNidxArray</a> pi=NULL)</td></tr>
+<tr class="separator:af531a6a84d19b64a74fabb718e9c12f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
+Protected Attributes</h2></td></tr>
+<tr class="memitem:a75bce877c86884daa690d4a508816391"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_n_nkd__tree.html#a75bce877c86884daa690d4a508816391">dim</a></td></tr>
+<tr class="separator:a75bce877c86884daa690d4a508816391"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5e2b9b8c72550fee6f0b83b2497aff78"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_n_nkd__tree.html#a5e2b9b8c72550fee6f0b83b2497aff78">n_pts</a></td></tr>
+<tr class="separator:a5e2b9b8c72550fee6f0b83b2497aff78"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4195961b40483502523de0147085061a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_n_nkd__tree.html#a4195961b40483502523de0147085061a">bkt_size</a></td></tr>
+<tr class="separator:a4195961b40483502523de0147085061a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1cfebcb6bc0c5799ca63742be94252e3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_a_n_n_8h.html#a402299ac00a81ad80f09a0eb84ba4059">ANNpointArray</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_n_nkd__tree.html#a1cfebcb6bc0c5799ca63742be94252e3">pts</a></td></tr>
+<tr class="separator:a1cfebcb6bc0c5799ca63742be94252e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab6e9412675e56af6e6cebcc012dadd00"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_a_n_n_8h.html#a6cc54f9929727736423d719870cf1a5b">ANNidxArray</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_n_nkd__tree.html#ab6e9412675e56af6e6cebcc012dadd00">pidx</a></td></tr>
+<tr class="separator:ab6e9412675e56af6e6cebcc012dadd00"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a260fdbf0352880655eba84b271d30351"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_a_n_n_8h.html#aacc30b4a2ed20722620c89db6c9f512c">ANNkd_ptr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_n_nkd__tree.html#a260fdbf0352880655eba84b271d30351">root</a></td></tr>
+<tr class="separator:a260fdbf0352880655eba84b271d30351"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a67b75c59ccbeba75df32e3d1ea6575ea"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_a_n_n_8h.html#ad85f4b5cb9cf5877a2094bf8582133f5">ANNpoint</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_n_nkd__tree.html#a67b75c59ccbeba75df32e3d1ea6575ea">bnd_box_lo</a></td></tr>
+<tr class="separator:a67b75c59ccbeba75df32e3d1ea6575ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58438fdbae2c04ee3bcd6ec507fb59d9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_a_n_n_8h.html#ad85f4b5cb9cf5877a2094bf8582133f5">ANNpoint</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_n_nkd__tree.html#a58438fdbae2c04ee3bcd6ec507fb59d9">bnd_box_hi</a></td></tr>
+<tr class="separator:a58438fdbae2c04ee3bcd6ec507fb59d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a554ac3f6c790dfa2268008580bcb9734"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ANNkd_tree::ANNkd_tree </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>n</em> = <code>0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>dd</em> = <code>0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>bs</em> = <code>1</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="aee9529e128732f61702c5b22f8090a9a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ANNkd_tree::ANNkd_tree </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_a_n_n_8h.html#a402299ac00a81ad80f09a0eb84ba4059">ANNpointArray</a>&#160;</td>
+          <td class="paramname"><em>pa</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>n</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>dd</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>bs</em> = <code>1</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="_a_n_n_8h.html#a229eef95deefadc9d3fa738683c9c2bb">ANNsplitRule</a>&#160;</td>
+          <td class="paramname"><em>split</em> = <code><a class="el" href="_a_n_n_8h.html#a229eef95deefadc9d3fa738683c9c2bba9998b60fada03ec8867d9ee448ac4ea7">ANN_KD_SUGGEST</a></code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a132d8b31ff7b223555d54a2db28d8861"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ANNkd_tree::ANNkd_tree </td>
+          <td>(</td>
+          <td class="paramtype">std::istream &amp;&#160;</td>
+          <td class="paramname"><em>in</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a0f6d39d75e2df3682035503d6f318d82"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ANNkd_tree::~ANNkd_tree </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a9f98ea5b23ad8957fbea661014d25889"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ANNkd_tree::annkFRSearch </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_a_n_n_8h.html#ad85f4b5cb9cf5877a2094bf8582133f5">ANNpoint</a>&#160;</td>
+          <td class="paramname"><em>q</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="_a_n_n_8h.html#ab2a7296707a2205201daccfc1929c3ca">ANNdist</a>&#160;</td>
+          <td class="paramname"><em>sqRad</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>k</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="_a_n_n_8h.html#a6cc54f9929727736423d719870cf1a5b">ANNidxArray</a>&#160;</td>
+          <td class="paramname"><em>nn_idx</em> = <code>NULL</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="_a_n_n_8h.html#ae3a038f02621d79c1efd5f8fb2ee968e">ANNdistArray</a>&#160;</td>
+          <td class="paramname"><em>dd</em> = <code>NULL</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>eps</em> = <code>0.0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="class_a_n_npoint_set.html#aab83304c25c29458433b06457a5eb944">ANNpointSet</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a5a30304ca338faa9e6c61b10dd7ee940"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ANNkd_tree::annkPriSearch </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_a_n_n_8h.html#ad85f4b5cb9cf5877a2094bf8582133f5">ANNpoint</a>&#160;</td>
+          <td class="paramname"><em>q</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>k</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="_a_n_n_8h.html#a6cc54f9929727736423d719870cf1a5b">ANNidxArray</a>&#160;</td>
+          <td class="paramname"><em>nn_idx</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="_a_n_n_8h.html#ae3a038f02621d79c1efd5f8fb2ee968e">ANNdistArray</a>&#160;</td>
+          <td class="paramname"><em>dd</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>eps</em> = <code>0.0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a2a0fa2889c23a34773dc054c7769b3c6"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ANNkd_tree::annkSearch </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_a_n_n_8h.html#ad85f4b5cb9cf5877a2094bf8582133f5">ANNpoint</a>&#160;</td>
+          <td class="paramname"><em>q</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>k</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="_a_n_n_8h.html#a6cc54f9929727736423d719870cf1a5b">ANNidxArray</a>&#160;</td>
+          <td class="paramname"><em>nn_idx</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="_a_n_n_8h.html#ae3a038f02621d79c1efd5f8fb2ee968e">ANNdistArray</a>&#160;</td>
+          <td class="paramname"><em>dd</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>eps</em> = <code>0.0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="class_a_n_npoint_set.html#acbbdd0587a0bcd655a1b8d353fde0800">ANNpointSet</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a85441f0c34490f4f629ac097d3d69421"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void ANNkd_tree::Dump </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_a_n_n_8h.html#ae5927710e8251aa54f5b820eca160f2c">ANNbool</a>&#160;</td>
+          <td class="paramname"><em>with_pts</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::ostream &amp;&#160;</td>
+          <td class="paramname"><em>out</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a073683890da921475a7de34af6f2c684"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void ANNkd_tree::getStats </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_a_n_nkd_stats.html">ANNkdStats</a> &amp;&#160;</td>
+          <td class="paramname"><em>st</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a7acce8e5f6bbbe1e3c9e7f503e70d19d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ANNkd_tree::nPoints </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="class_a_n_npoint_set.html#a15b2fefca5fecd901ac637dfad13251b">ANNpointSet</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae601d3d51d0458c35089711495d92fb5"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void ANNkd_tree::Print </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_a_n_n_8h.html#ae5927710e8251aa54f5b820eca160f2c">ANNbool</a>&#160;</td>
+          <td class="paramname"><em>with_pts</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::ostream &amp;&#160;</td>
+          <td class="paramname"><em>out</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="af531a6a84d19b64a74fabb718e9c12f0"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ANNkd_tree::SkeletonTree </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>n</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>dd</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>bs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="_a_n_n_8h.html#a402299ac00a81ad80f09a0eb84ba4059">ANNpointArray</a>&#160;</td>
+          <td class="paramname"><em>pa</em> = <code>NULL</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="_a_n_n_8h.html#a6cc54f9929727736423d719870cf1a5b">ANNidxArray</a>&#160;</td>
+          <td class="paramname"><em>pi</em> = <code>NULL</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a200c6e8c2d9ea1d9afbdec893c41edb2"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ANNkd_tree::theDim </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="class_a_n_npoint_set.html#af5c31c17581ec593d31ceeb12adb1728">ANNpointSet</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a927be6420bd73db85ad8e356b462ec1b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_a_n_n_8h.html#a402299ac00a81ad80f09a0eb84ba4059">ANNpointArray</a> ANNkd_tree::thePoints </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="class_a_n_npoint_set.html#ab791b3d9247afc32521ddcb61f27f6a2">ANNpointSet</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="a4195961b40483502523de0147085061a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ANNkd_tree::bkt_size</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a58438fdbae2c04ee3bcd6ec507fb59d9"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_a_n_n_8h.html#ad85f4b5cb9cf5877a2094bf8582133f5">ANNpoint</a> ANNkd_tree::bnd_box_hi</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a67b75c59ccbeba75df32e3d1ea6575ea"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_a_n_n_8h.html#ad85f4b5cb9cf5877a2094bf8582133f5">ANNpoint</a> ANNkd_tree::bnd_box_lo</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a75bce877c86884daa690d4a508816391"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ANNkd_tree::dim</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a5e2b9b8c72550fee6f0b83b2497aff78"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ANNkd_tree::n_pts</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ab6e9412675e56af6e6cebcc012dadd00"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_a_n_n_8h.html#a6cc54f9929727736423d719870cf1a5b">ANNidxArray</a> ANNkd_tree::pidx</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a1cfebcb6bc0c5799ca63742be94252e3"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_a_n_n_8h.html#a402299ac00a81ad80f09a0eb84ba4059">ANNpointArray</a> ANNkd_tree::pts</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a260fdbf0352880655eba84b271d30351"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_a_n_n_8h.html#aacc30b4a2ed20722620c89db6c9f512c">ANNkd_ptr</a> ANNkd_tree::root</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr>The documentation for this class was generated from the following file:<ul>
+<li>include/<a class="el" href="_a_n_n_8h_source.html">ANN.h</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"><address class="footer"><small>
+Generated on Fri May 31 2013 10:57:40 for ARLK by &#160;<a href="http://www.doxygen.org/index.html" target="_blank" rel="external">
+<img class="footer" src="doxygen.png" alt="doxygen">
+</a> 1.8.2
+</small></address>
+</body>
+</html>
+
+            
+                
+
+            
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+        <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--disabled">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--disabled">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions"  href="#btn-open-shareoptions">
+                <i class="fa fa-share-alt"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://eaglesky.github.io/ARLK_html/class_a_n_nkd__tree.html">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://eaglesky.github.io/ARLK_html/class_a_n_nkd__tree.html">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://eaglesky.github.io/ARLK_html/class_a_n_nkd__tree.html">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
+        
+            <li class="post-action">
+                <a class="post-action-btn btn btn--default" href="#disqus_thread">
+                    <i class="fa fa-comment-o"></i>
+                </a>
+            </li>
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#">
+            
+                <i class="fa fa-arrow-up"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+            
+                <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+            
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2016 Yalun Qin. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+        </div>
+        
+
+
+    
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-remove"></i>
+        </div>
+        
+            <img id="about-card-picture" src="http://www.gravatar.com/avatar/7e85ef7ac7d7263b525e55e4408151a4?s=110"/>
+        
+            <h4 id="about-card-name">Yalun Qin</h4>
+        
+            <h5 id="about-card-bio"><p>Hey I’m Yalun!<br> allenchin1990@gmail.com</p>
+</h5>
+        
+        
+            <h5 id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                <p>Software Engineer</p>
+
+            </h5>
+        
+        
+            <h5 id="about-card-location">
+                <i class="fa fa-map-marker"></i>
+                <br/>
+                San Francisco Bay Area
+            </h5>
+        
+    </div>
+</div>
+
+        
+<div id="cover" style="background-image:url('https://farm2.staticflickr.com/1569/24064703426_c1fa9c3ee6_h.jpg');"></div>
+    </body>
+    <!--SCRIPTS-->
+<script src="/assets/js/jquery.js" type="text/javascript"></script>
+<script src="/assets/js/jquery.fancybox.js" type="text/javascript"></script>
+<script src="/assets/js/jquery.fancybox-thumbs.js" type="text/javascript"></script>
+<script src="/assets/js/tranquilpeak.js" type="text/javascript"></script>
+<!--SCRIPTS END-->
+
+    
+        <script>
+             var disqus_config = function () {
+                 this.page.url = 'http://eaglesky.github.io/ARLK_html/class_a_n_nkd__tree.html';
+             };
+            (function() {
+                var d = document, s = d.createElement('script');
+                var disqus_shortname = 'eaglesky';
+                s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+
+
+    <script type="text/javascript">
+        (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+                (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+            e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+        })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+        _st('install','FdJaNFHgUJY_8fxMdWNj','2.0.0');
+    </script>
+
+
+</html>
